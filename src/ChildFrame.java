@@ -6,7 +6,7 @@ public class ChildFrame extends JInternalFrame{
 
     public ChildFrame(DesktopFrame df) {
         super("Hauptmenue", true, false, true, true);
-        Dimension buttonSize = new Dimension(150,30);
+        Dimension buttonSize = new Dimension(115,50);
         mydesk = df;
         Container cp = getContentPane();
         cp.setLayout(new BoxLayout(cp, BoxLayout.Y_AXIS));
@@ -38,35 +38,35 @@ public class ChildFrame extends JInternalFrame{
         //Buttons für die einzelnen Spiele erstellen mit ActionListener
         //TODO ActionListener
         JButton siebenSpaltenButton = new JButton("Sieben Prim");
-        siebenSpaltenButton.setPreferredSize(buttonSize);
+        siebenSpaltenButton.setMaximumSize(buttonSize);
         siebenSpaltenButton.setAlignmentX(CENTER_ALIGNMENT);
 
         JButton regenbogenButton = new JButton("Regenbogen");
-        regenbogenButton.setPreferredSize(buttonSize);
+        regenbogenButton.setMaximumSize(buttonSize);
         regenbogenButton.setAlignmentX(CENTER_ALIGNMENT);
 
         JButton drehSafeButton = new JButton("Drehsafe");
-        drehSafeButton.setPreferredSize(buttonSize);
+        drehSafeButton.setMaximumSize(buttonSize);
         drehSafeButton.setAlignmentX(CENTER_ALIGNMENT);
 
         JButton dragSafeButton = new JButton("Dragsafe");
-        dragSafeButton.setPreferredSize(buttonSize);
+        dragSafeButton.setMaximumSize(buttonSize);
         dragSafeButton.setAlignmentX(CENTER_ALIGNMENT);
 
         JButton connect6Button = new JButton("Connect6");
-        connect6Button.setPreferredSize(buttonSize);
+        connect6Button.setMaximumSize(buttonSize);
         connect6Button.setAlignmentX(CENTER_ALIGNMENT);
 
         JButton mvcExampleButton = new JButton("MVC example");
-        mvcExampleButton.setPreferredSize(buttonSize);
+        mvcExampleButton.setMaximumSize(buttonSize);
         mvcExampleButton.setAlignmentX(CENTER_ALIGNMENT);
 
         JButton gameOfLifeButton = new JButton("Game of Life");
-        gameOfLifeButton.setPreferredSize(buttonSize);
+        gameOfLifeButton.setMaximumSize(buttonSize);
         gameOfLifeButton.setAlignmentX(CENTER_ALIGNMENT);
 
         JButton sokobanButton = new JButton("Sokoban");
-        sokobanButton.setPreferredSize(buttonSize);
+        sokobanButton.setMaximumSize(buttonSize);
         sokobanButton.setAlignmentX(CENTER_ALIGNMENT);
 
         //Buttons den Panels hinzufügen
@@ -91,7 +91,7 @@ public class ChildFrame extends JInternalFrame{
         gameButtonPanelrechts.add(Box.createVerticalGlue());
 
         JButton beendenButton = new JButton("Beenden");
-        beendenButton.setPreferredSize(buttonSize);
+        beendenButton.setMaximumSize(buttonSize);
         beendenButton.addActionListener(e -> System.exit(0));
         beendenButton.setAlignmentX(CENTER_ALIGNMENT);
 
