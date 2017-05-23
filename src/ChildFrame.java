@@ -9,8 +9,7 @@ import static java.awt.Component.CENTER_ALIGNMENT;
 /**
  * Created by albertrenz on 23.05.17.
  */
-public class ChildFrame {
-
+public class ChildFrame extends JInternalFrame{
     DesktopFrame mydesk;
 
     public ChildFrame(DesktopFrame df) {
@@ -26,14 +25,11 @@ public class ChildFrame {
         cp.add(ueberschrift);
         cp.add(Box.createVerticalGlue());
 
-
-
         JButton beenden = new JButton("Beenden");
         beenden.setPreferredSize(new Dimension(100, 40));
         beenden.addActionListener(e -> System.exit(0));
-
-       ;
         beenden.setAlignmentX(CENTER_ALIGNMENT);
+
         cp.add(Box.createVerticalGlue());
         cp.add(beenden);
         cp.add(Box.createVerticalGlue());
