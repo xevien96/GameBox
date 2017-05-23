@@ -1,14 +1,6 @@
 import javax.swing.*;
-import javax.swing.event.InternalFrameAdapter;
-import javax.swing.event.InternalFrameEvent;
 import java.awt.*;
-import java.awt.event.*;
 
-import static java.awt.Component.CENTER_ALIGNMENT;
-
-/**
- * Created by albertrenz on 23.05.17.
- */
 public class ChildFrame extends JInternalFrame{
     DesktopFrame mydesk;
 
