@@ -17,6 +17,8 @@ public class ChildFrame extends JInternalFrame{
         cp.add(ueberschrift);
         cp.add(Box.createVerticalGlue());
 
+        JButton[] buttons = {};
+
         JButton beenden = new JButton("Beenden");
         beenden.setPreferredSize(new Dimension(100, 40));
         beenden.addActionListener(e -> System.exit(0));
