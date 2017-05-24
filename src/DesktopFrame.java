@@ -15,7 +15,6 @@ public class DesktopFrame extends JApplet {
 
     public void addChild(JInternalFrame child, int x, int y){
         child.setLocation(x, y);
-        child.setSize(300,300);
         child.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
         desk.add(child);
         child.setVisible(true);
