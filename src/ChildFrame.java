@@ -41,7 +41,7 @@ public class ChildFrame extends JInternalFrame{
         JButton siebenSpaltenButton = new JButton("Sieben Prim");
         siebenSpaltenButton.setMaximumSize(buttonSize);
         siebenSpaltenButton.setAlignmentX(CENTER_ALIGNMENT);
-        siebenSpaltenButton.addActionListener(e -> new ChildFrame(mydesk, new SiebenSpaltenPrim(), "SiebenSpaltenPrim", 250, 400));
+        siebenSpaltenButton.addActionListener(e -> mydesk.addChild(new SiebenSpaltenPrim(), 20, 20));
 
         JButton regenbogenButton = new JButton("Regenbogen");
         regenbogenButton.setMaximumSize(buttonSize);
@@ -100,14 +100,5 @@ public class ChildFrame extends JInternalFrame{
         cp.add(Box.createVerticalGlue());
         cp.add(beendenButton);
         cp.add(Box.createVerticalGlue());
-    }
-
-    public ChildFrame(DesktopFrame df, JPanel content, String title, int width, int height){
-        super(title, true, true, true, true);
-        mydesk = df;
-        setSize(width,height);
-        Container cp = getContentPane();
-        cp.add(content);
-        mydesk.addChild(this, 20, 20);
     }
 }
