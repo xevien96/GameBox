@@ -19,20 +19,20 @@ public class LevelMaker {
         try {
             FileReader input = new FileReader(levelFile);
             BufferedReader reader = new BufferedReader(input);
+            String worldName = levelFile.getName().replace(".txt", "");
             int levelNr;
-            String levelName = "";
+            String levelName;
             String level = "";
             String temp;
             while((temp = reader.readLine()) != null){
                 if(temp.startsWith("Level")){
-                    Scanner levelNrScanner = new Scanner(temp);
-                    levelNr = levelNrScanner.nextInt();
+                    levelNr = Integer.parseInt(temp.replaceAll("[\\D]", ""));
                     temp = reader.readLine();
                     levelName = temp;
                     while(!(temp = reader.readLine()).equals("")){
                         level += temp+"\n";
                     }
-
+                    new Level(worldName, levelNr, levelName, level);
                 }
             }
         } catch (FileNotFoundException e){
