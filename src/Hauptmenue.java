@@ -1,10 +1,12 @@
+import siebenSpaltenPrim.SiebenSpaltenPrim;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class ChildFrame extends JInternalFrame{
+public class Hauptmenue extends JInternalFrame{
     DesktopFrame mydesk;
 
-    public ChildFrame(DesktopFrame df) {
+    public Hauptmenue(DesktopFrame df) {
         super("Hauptmenue", true, false, true, true);
         Dimension buttonSize = new Dimension(115,50);
         mydesk = df;

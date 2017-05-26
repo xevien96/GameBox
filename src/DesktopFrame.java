@@ -27,7 +27,7 @@ public class DesktopFrame extends JApplet {
             e.printStackTrace();
         }
         DesktopFrame desktop = new DesktopFrame();
-        desktop.addChild(new ChildFrame(desktop),10,10);
+        desktop.addChild(new Hauptmenue(desktop),10,10);
         Konsole.run(desktop,800,600);
     }
 }

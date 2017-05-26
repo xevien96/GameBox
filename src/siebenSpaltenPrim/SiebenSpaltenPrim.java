@@ -1,3 +1,5 @@
+package siebenSpaltenPrim;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -6,7 +8,7 @@ public class SiebenSpaltenPrim extends JInternalFrame {
     private JScrollPane scrollPane;
 
     public SiebenSpaltenPrim() {
-        super("SiebenSpaltenPrim", true, true, true, true);
+        super("siebenSpaltenPrim.SiebenSpaltenPrim", true, true, true, true);
         setSize(590, 400);
         Container cp = getContentPane();
         cp.setLayout(new BorderLayout());
@@ -79,7 +81,7 @@ class Primer extends Thread implements Runnable {
     private SiebenSpaltenPrim myFrame;
 
     Primer(int prime, String prefix, SiebenSpaltenPrim inf) {
-        super("Primer-" + prime);
+        super("siebenSpaltenPrim.Primer-" + prime);
         myFrame = inf;
         p = prime;
         this.prefix = prefix;
