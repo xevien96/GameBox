@@ -23,16 +23,20 @@ public class LevelMaker {
             BufferedReader reader = new BufferedReader(input);
             String worldName = levelFile.getName().replace(".txt", "");
             int levelNr;
-            String levelName;
+            String levelName = "";
             String level = "";
             String temp;
             while ((temp = reader.readLine()) != null) {
                 if (temp.startsWith("Level")) {
                     levelNr = Integer.parseInt(temp.replaceAll("[\\D]", ""));
                     temp = reader.readLine();
-                    levelName = temp;
-                    while (!(temp = reader.readLine()).equals("")) {
+                    if (temp.startsWith("'")) {
+                        levelName = temp;
+                        temp = reader.readLine();
+                    }
+                    while (!temp.equals("")) {
                         level += temp + "n";
+                        temp = reader.readLine();
                     }
                     new Level(worldName, levelNr, levelName, level);
                     level = "";

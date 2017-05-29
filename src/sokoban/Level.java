@@ -52,8 +52,6 @@ public class Level implements Serializable {
         try {
             FileOutputStream fs = new FileOutputStream(directory + "\\" + String.valueOf(levelNr) + ".ser");
             ObjectOutputStream os = new ObjectOutputStream(fs);
-            fs.flush();
-            os.flush();
             os.writeObject(this);
             os.close();
             fs.close();
