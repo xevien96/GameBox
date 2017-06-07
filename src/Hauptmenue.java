@@ -3,14 +3,14 @@ import siebenSpaltenPrim.SiebenSpaltenPrim;
 import javax.swing.*;
 import java.awt.*;
 
-public class Hauptmenue extends JInternalFrame{
+public class Hauptmenue extends JInternalFrame {
     DesktopFrame mydesk;
 
     public Hauptmenue(DesktopFrame df) {
         super("Hauptmenue", true, false, true, true);
-        Dimension buttonSize = new Dimension(115,50);
+        Dimension buttonSize = new Dimension(115, 50);
         mydesk = df;
-        setSize(300,300);
+        setSize(300, 300);
         Container cp = getContentPane();
         cp.setLayout(new BoxLayout(cp, BoxLayout.Y_AXIS));
 
