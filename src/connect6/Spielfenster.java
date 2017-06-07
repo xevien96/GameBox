@@ -1,6 +1,7 @@
 package connect6;
 
 import hauptmenü.DesktopFrame;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
@@ -40,9 +41,10 @@ public class Spielfenster extends JInternalFrame implements ActionListener {
 
     /**
      * Konstruktor für ein Spielfenster
+     *
      * @param feldgröße Größe des Spielfelds
-     * @param spieler1 Spieler1 mit Name + Farbe
-     * @param spieler2 Spieler2 mit Name + Farbe
+     * @param spieler1  Spieler1 mit Name + Farbe
+     * @param spieler2  Spieler2 mit Name + Farbe
      * @param spielzüge bisher gemachte Züge (wichtig beim Laden einer Spieldatei)
      */
     public Spielfenster(int feldgröße, Spieler spieler1, Spieler spieler2, ArrayList<Integer> spielzüge, DesktopFrame df) {
@@ -79,14 +81,15 @@ public class Spielfenster extends JInternalFrame implements ActionListener {
         /**
          * Bisher gemachte Züge werden gesetzt (beim Laden)
          */
-        for(Integer i : this.spielzüge){
-            steinSetzen(i/feldgröße, i%feldgröße);
+        for (Integer i : this.spielzüge) {
+            steinSetzen(i / feldgröße, i % feldgröße);
         }
         myDesk.addChild(this, 30, 30);
     }
 
     /**
      * Erstellt ein Spielfenster aus einer gespeicherten Textdatei
+     *
      * @param gameFile Datei, die die Spielinformationen enthält wird übergeben.
      */
     public static void createGameFromFile(File gameFile, DesktopFrame df) throws IOException {
@@ -102,7 +105,7 @@ public class Spielfenster extends JInternalFrame implements ActionListener {
         Spieler spieler2 = new Spieler(spieler2Name, spieler2Farbe);
         ArrayList<Integer> geladeneZüge = new ArrayList<>();
         String input;
-        while((input = in.readLine()) != null){
+        while ((input = in.readLine()) != null) {
             geladeneZüge.add(Integer.parseInt(input)); //Solange weitere Zeilen(Züge) vorhanden sind, werden sie der Arraylist hinzugefügt
         }
         new Spielfenster(feldGröße, spieler1, spieler2, geladeneZüge, df); //erstellt das Spielfenster
@@ -205,23 +208,31 @@ public class Spielfenster extends JInternalFrame implements ActionListener {
 
     /**
      * Methode um Steine zu setzen
-     * @param zeile Zeile des gesetzten Steins
+     *
+     * @param zeile  Zeile des gesetzten Steins
      * @param spalte Spalte des gesetzten Steins
      */
     private void steinSetzen(int zeile, int spalte) {
         spielfeld[zeile][spalte].setBackground(spieler[aktiverSpieler].getFarbe()); //Farbe des ausgewählten Felds wird auf die Spielerfarbe gefärbt
         verbleibendeSteine--;
+        undoButton.setEnabled(true);
+        anzeige.setText(spieler[aktiverSpieler].getName() + " ist am Zug. Noch " + verbleibendeSteine + " Stein(e) verbleibend.");
         testeGewinner(zeile, spalte);
         if (spielzüge.size() >= maximaleZüge) { // es wird getestet ob das Spielfeld voll ist
-            MyDialog dlg = new MyDialog(this, "Das Spielfeld ist voll!");
-            dlg.setVisible(true);
+            JOptionPane.showInternalMessageDialog(this, "Das Spielfeld ist voll", "Spiel beendet", JOptionPane.INFORMATION_MESSAGE);
+            undoButton.setEnabled(false);
+            saveButton.setEnabled(false);
+            for (JButton[] b : spielfeld) {
+                for (JButton button : b) {
+                    button.setEnabled(false);
+                }
+            }
+            anzeige.setText("Das Spielfeld ist voll");
         }
         if (verbleibendeSteine <= 0) { //Spielerwechsel wenn anderer Spieler dran ist
             spielerWechseln();
             verbleibendeSteine = 2;
         }
-        undoButton.setEnabled(true);
-        anzeige.setText(spieler[aktiverSpieler].getName() + " ist am Zug. Noch " + verbleibendeSteine + " Stein(e) verbleibend.");
     }
 
     /**
@@ -230,13 +241,21 @@ public class Spielfenster extends JInternalFrame implements ActionListener {
     private void testeGewinner(int zeile, int spalte) {
         Color farbeGesetzt = spielfeld[zeile][spalte].getBackground();
         if (testeSpalte(zeile, spalte, farbeGesetzt) || testeZeile(zeile, spalte, farbeGesetzt) || testeHauptdiagonale(zeile, spalte, farbeGesetzt) || testeNebendiagonale(zeile, spalte, farbeGesetzt)) {
-            MyDialog dlg = new MyDialog(this, spieler[aktiverSpieler].getName() + " hat gewonnen!");
-            dlg.setVisible(true);
+            JOptionPane.showInternalMessageDialog(this, spieler[aktiverSpieler].getName() + " hat gewonnen!", "Spiel beendet", JOptionPane.INFORMATION_MESSAGE);
+            undoButton.setEnabled(false);
+            saveButton.setEnabled(false);
+            for (JButton[] b : spielfeld) {
+                for (JButton button : b) {
+                    button.setEnabled(false);
+                }
+            }
+            anzeige.setText(spieler[aktiverSpieler].getName() + " hat gewonnen!");
         }
     }
 
     /**
      * testet nach Spalte in der der Stein gesetzt wurde
+     *
      * @return ob die Gewinnbedingung erfüllt wurde
      */
     private boolean testeSpalte(int zeile, int spalte, Color farbeGesetzt) {
@@ -253,6 +272,7 @@ public class Spielfenster extends JInternalFrame implements ActionListener {
 
     /**
      * testet nach Zeile in der der Stein gesetzt wurde
+     *
      * @return ob die Gewinnbedingung erfüllt wurde
      */
     private boolean testeZeile(int zeile, int spalte, Color farbeGesetzt) {
@@ -269,6 +289,7 @@ public class Spielfenster extends JInternalFrame implements ActionListener {
 
     /**
      * testet Diagonale von links oben nach rechts unten
+     *
      * @return ob die Gewinnbedingung erfüllt wurde
      */
     private boolean testeHauptdiagonale(int zeile, int spalte, Color farbeGesetzt) {
@@ -287,6 +308,7 @@ public class Spielfenster extends JInternalFrame implements ActionListener {
 
     /**
      * testet Diagonale von rechts oben nach links unten
+     *
      * @return ob die Gewinnbedingung erfüllt wurde
      */
     private boolean testeNebendiagonale(int zeile, int spalte, Color farbeGesetzt) {
@@ -312,6 +334,7 @@ public class Spielfenster extends JInternalFrame implements ActionListener {
 
     /**
      * Schreibt alle notwendigen Informationen in den outputStream
+     *
      * @param outputStream Der Stream in dem das Spiel gespeichert/geschrieben wird
      */
     private void printGame(OutputStream outputStream) {
@@ -321,7 +344,7 @@ public class Spielfenster extends JInternalFrame implements ActionListener {
         writer.println(spieler[0].getFarbe().getRGB());
         writer.println(spieler[1].getName());
         writer.println(spieler[1].getFarbe().getRGB());
-        for(Integer i : spielzüge)
+        for (Integer i : spielzüge)
             writer.println(i);
     }
 
