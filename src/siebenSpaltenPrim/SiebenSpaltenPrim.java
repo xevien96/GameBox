@@ -89,7 +89,7 @@ class Primer extends Thread implements Runnable {
     }
 
     public void run() {
-        myFrame.write(prefix + p+"\n");
+        myFrame.write(prefix + p + "\n");
         while (true) {
             int n = recieve();
             if (n == 0) {
