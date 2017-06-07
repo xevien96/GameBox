@@ -1,6 +1,7 @@
 package hauptmenü;
 
 import connect6.Startfenster;
+import dragsafe.DragSafe;
 import siebenSpaltenPrim.SiebenSpaltenPrim;
 
 import javax.swing.*;
@@ -59,6 +60,7 @@ public class Hauptmenue extends JInternalFrame {
         JButton dragSafeButton = new JButton("Dragsafe");
         dragSafeButton.setMaximumSize(buttonSize);
         dragSafeButton.setAlignmentX(CENTER_ALIGNMENT);
+        dragSafeButton.addActionListener(e -> mydesk.addChild(new DragSafe(), 20, 20));
 
         JButton connect6Button = new JButton("Connect6");
         connect6Button.setMaximumSize(buttonSize);
