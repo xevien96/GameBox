@@ -1,3 +1,6 @@
+package hauptmenü;
+
+import connect6.Startfenster;
 import siebenSpaltenPrim.SiebenSpaltenPrim;
 
 import javax.swing.*;
@@ -60,6 +63,7 @@ public class Hauptmenue extends JInternalFrame {
         JButton connect6Button = new JButton("Connect6");
         connect6Button.setMaximumSize(buttonSize);
         connect6Button.setAlignmentX(CENTER_ALIGNMENT);
+        connect6Button.addActionListener(e -> mydesk.addChild(new Startfenster(mydesk), 30, 30));
 
         JButton mvcExampleButton = new JButton("MVC example");
         mvcExampleButton.setMaximumSize(buttonSize);
