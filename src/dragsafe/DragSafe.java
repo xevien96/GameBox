@@ -1,5 +1,7 @@
 package dragsafe;
 
+import hauptmenü.DesktopFrame;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -11,6 +13,7 @@ import java.awt.event.MouseMotionListener;
  */
 
 public class DragSafe extends JInternalFrame implements MouseMotionListener, MouseListener {
+    public DesktopFrame myDesk;
     private JButton[] buttons = new JButton[10];    //Array mit allen Buttons
     private Container cp;
     private boolean active = true;  //wenn false, werden Mousedraggedevents ignoriert
@@ -22,7 +25,8 @@ public class DragSafe extends JInternalFrame implements MouseMotionListener, Mou
     static int numberOfWindows = 0; //Anzahl der offenen Fenster(Levelzähler)
     int drehzaehler;                //Anzahl der durchgeführten Drehungen
 
-    public DragSafe() {
+    public DragSafe(DesktopFrame df) {
+        myDesk = df;
         sleeptime = (long) (sleeptime / Math.pow(1.5, numberOfWindows)); //jedes Fenster ist 50% schneller als das vorherige Level
         numberOfWindows++;
         setSize(480, 500);
@@ -117,7 +121,7 @@ public class DragSafe extends JInternalFrame implements MouseMotionListener, Mou
                 int pressed = Integer.parseInt(((JButton) source).getActionCommand());
                 if (pressed != code[zustand]) {
                     col = Color.red;
-                    new DragSafe();
+                    myDesk.addChild(new DragSafe(myDesk), 20, 20);
                     zustand = 0;
                 } else if (pressed == code[zustand]) {
                     col = Color.green;
@@ -141,9 +145,5 @@ public class DragSafe extends JInternalFrame implements MouseMotionListener, Mou
     //ändert die Drehrichtung
     private void drehanders() {
         dreh = -dreh;
-    }
-
-    public static void main(String[] args) {
-        new DragSafe();
     }
 }
