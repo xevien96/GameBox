@@ -31,7 +31,6 @@ public class DrehSafe extends JInternalFrame implements ActionListener {
         initp3();
         initp4();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setVisible(true);
         // jede Sekunde wird der Text jedes Buttons um eins erhöht oder vermindert, wobei 0 - 1 = 9 und 9 + 1 = 0
         new Thread(() -> {
             while (true) {
