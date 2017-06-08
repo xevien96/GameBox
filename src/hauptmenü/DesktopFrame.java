@@ -1,3 +1,5 @@
+package hauptmenü;
+
 import javax.swing.*;
 
 /**

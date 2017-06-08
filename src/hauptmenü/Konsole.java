@@ -1,10 +1,12 @@
+package hauptmenü;
+
 import javax.swing.*;
 
 public class Konsole {
     public static String title(Object o) {
         String t = o.getClass().toString();
         if(t.indexOf("class") != -1) t = t.substring(6);
-        System.out.println ("Konsole: running "+t);
+        System.out.println ("hauptmenü.Konsole: running "+t);
         return t;
     }
     public static void setupClosing(JFrame frame) {

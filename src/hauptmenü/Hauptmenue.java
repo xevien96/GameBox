@@ -1,16 +1,20 @@
+package hauptmenü;
+
+import connect6.Startfenster;
 import siebenSpaltenPrim.SiebenSpaltenPrim;
+import regenbogen.Regenbogen;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Hauptmenue extends JInternalFrame{
+public class Hauptmenue extends JInternalFrame {
     DesktopFrame mydesk;
 
     public Hauptmenue(DesktopFrame df) {
         super("Hauptmenue", true, false, true, true);
-        Dimension buttonSize = new Dimension(115,50);
+        Dimension buttonSize = new Dimension(115, 50);
         mydesk = df;
-        setSize(300,300);
+        setSize(300, 300);
         Container cp = getContentPane();
         cp.setLayout(new BoxLayout(cp, BoxLayout.Y_AXIS));
 
@@ -48,6 +52,7 @@ public class Hauptmenue extends JInternalFrame{
         JButton regenbogenButton = new JButton("Regenbogen");
         regenbogenButton.setMaximumSize(buttonSize);
         regenbogenButton.setAlignmentX(CENTER_ALIGNMENT);
+        regenbogenButton.addActionListener(e -> mydesk.addChild(new Regenbogen(),30,30));
 
         JButton drehSafeButton = new JButton("Drehsafe");
         drehSafeButton.setMaximumSize(buttonSize);
@@ -60,6 +65,7 @@ public class Hauptmenue extends JInternalFrame{
         JButton connect6Button = new JButton("Connect6");
         connect6Button.setMaximumSize(buttonSize);
         connect6Button.setAlignmentX(CENTER_ALIGNMENT);
+        connect6Button.addActionListener(e -> mydesk.addChild(new Startfenster(mydesk), 30, 30));
 
         JButton mvcExampleButton = new JButton("MVC example");
         mvcExampleButton.setMaximumSize(buttonSize);
