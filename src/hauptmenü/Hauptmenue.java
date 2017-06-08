@@ -3,6 +3,8 @@ package hauptmenü;
 import connect6.Startfenster;
 import dragsafe.DragSafe;
 import drehsafe.DrehSafe;
+import gameoflife.ChildFrame;
+import mvcviewer.MVCexample;
 import siebenSpaltenPrim.SiebenSpaltenPrim;
 import regenbogen.Regenbogen;
 
@@ -74,10 +76,12 @@ public class Hauptmenue extends JInternalFrame {
         JButton mvcExampleButton = new JButton("MVC example");
         mvcExampleButton.setMaximumSize(buttonSize);
         mvcExampleButton.setAlignmentX(CENTER_ALIGNMENT);
+        mvcExampleButton.addActionListener(e -> mydesk.addChild(new MVCexample(), 30, 30));
 
         JButton gameOfLifeButton = new JButton("Game of Life");
         gameOfLifeButton.setMaximumSize(buttonSize);
         gameOfLifeButton.setAlignmentX(CENTER_ALIGNMENT);
+        gameOfLifeButton.addActionListener(e -> mydesk.addChild(new ChildFrame(mydesk), 30, 30));
 
         JButton sokobanButton = new JButton("Sokoban");
         sokobanButton.setMaximumSize(buttonSize);

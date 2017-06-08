@@ -15,13 +15,6 @@ public class DesktopFrame extends JApplet {
         setContentPane(desk);
     }
 
-    public void addChild(JInternalFrame child, int x, int y) {
-        child.setLocation(x, y);
-        child.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
-        desk.add(child);
-        child.setVisible(true);
-    }
-
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
@@ -30,6 +23,13 @@ public class DesktopFrame extends JApplet {
         }
         DesktopFrame desktop = new DesktopFrame();
         desktop.addChild(new Hauptmenue(desktop), 10, 10);
-        Konsole.run(desktop, 800, 600);
+        Konsole.run(desktop, 800, 800);
+    }
+
+    public void addChild(JInternalFrame child, int x, int y) {
+        child.setLocation(x, y);
+        child.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
+        desk.add(child);
+        child.setVisible(true);
     }
 }
