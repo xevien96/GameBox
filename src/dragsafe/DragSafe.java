@@ -136,7 +136,7 @@ public class DragSafe extends JInternalFrame implements MouseMotionListener, Mou
                     this.dispose();
                 }
                 if (numberOfWindows <= 0)
-                    System.exit(0);
+                    dispose();
             }
         }
     }
