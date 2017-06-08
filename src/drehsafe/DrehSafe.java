@@ -93,7 +93,7 @@ public class DrehSafe extends JInternalFrame implements ActionListener {
     /**
      * bei richtigem Button werden die Buttons grün
      * bei falschem Button werden die Buttons rot und die Drehrichtung ändert sich
-     * bei komplett richtiger Codeeingabe schließt sich das Programm
+     * bei komplett richtiger Codeeingabe schließt sich das Fenster
      *
      * @param evt Button der das Event auslöst ausgelesen
      */
@@ -114,7 +114,7 @@ public class DrehSafe extends JInternalFrame implements ActionListener {
         }
 
         if (zustand >= code.length)
-            System.exit(0);
+            dispose();
     }
 
     //ändert die Drehrichtung
