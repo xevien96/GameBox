@@ -53,7 +53,6 @@ public class DragSafe extends JInternalFrame implements MouseMotionListener, Mou
         cp.add(buttons[5]);
         // alle Buttons deklarieren
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //Programm kann mit dem Schließenbutton komplett beendet werden
-        setVisible(true);
         // jede Sekunde wird der Text jedes Buttons um eins erhöht oder vermindert, wobei 0 - 1 = 9 und 9 + 1 = 0
         //nach 13 Schritten ändert sich die Drehrichtung
         new Thread(() -> {
