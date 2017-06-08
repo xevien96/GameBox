@@ -121,8 +121,4 @@ public class DrehSafe extends JInternalFrame implements ActionListener {
     private void drehanders() {
         dreh = -dreh;
     }
-
-    public static void main(String[] args) {
-        new DrehSafe();
-    }
 }
