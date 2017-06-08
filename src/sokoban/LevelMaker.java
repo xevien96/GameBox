@@ -31,7 +31,7 @@ public class LevelMaker {
                     levelNr = Integer.parseInt(temp.replaceAll("[\\D]", ""));
                     temp = reader.readLine();
                     if (temp.startsWith("'")) {
-                        levelName = temp.replaceAll("[']", "");
+                        levelName = temp.replaceAll("[']","");
                         temp = reader.readLine();
                     }
                     while (!temp.equals("")) {

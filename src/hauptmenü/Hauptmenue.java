@@ -4,6 +4,7 @@ import connect6.Startfenster;
 import dragsafe.DragSafe;
 import drehsafe.DrehSafe;
 import siebenSpaltenPrim.SiebenSpaltenPrim;
+import regenbogen.Regenbogen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -53,6 +54,7 @@ public class Hauptmenue extends JInternalFrame {
         JButton regenbogenButton = new JButton("Regenbogen");
         regenbogenButton.setMaximumSize(buttonSize);
         regenbogenButton.setAlignmentX(CENTER_ALIGNMENT);
+        regenbogenButton.addActionListener(e -> mydesk.addChild(new Regenbogen(mydesk),30,30));
 
         JButton drehSafeButton = new JButton("Drehsafe");
         drehSafeButton.setMaximumSize(buttonSize);

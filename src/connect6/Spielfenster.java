@@ -43,8 +43,8 @@ public class Spielfenster extends JInternalFrame implements ActionListener {
      * Konstruktor für ein Spielfenster
      *
      * @param feldgröße Größe des Spielfelds
-     * @param spieler1  Spieler1 mit Name + Farbe
-     * @param spieler2  Spieler2 mit Name + Farbe
+     * @param spieler1 Spieler1 mit Name + Farbe
+     * @param spieler2 Spieler2 mit Name + Farbe
      * @param spielzüge bisher gemachte Züge (wichtig beim Laden einer Spieldatei)
      */
     public Spielfenster(int feldgröße, Spieler spieler1, Spieler spieler2, ArrayList<Integer> spielzüge, DesktopFrame df) {
@@ -81,8 +81,8 @@ public class Spielfenster extends JInternalFrame implements ActionListener {
         /**
          * Bisher gemachte Züge werden gesetzt (beim Laden)
          */
-        for (Integer i : this.spielzüge) {
-            steinSetzen(i / feldgröße, i % feldgröße);
+        for(Integer i : this.spielzüge){
+            steinSetzen(i/feldgröße, i%feldgröße);
         }
         myDesk.addChild(this, 30, 30);
     }
@@ -105,7 +105,7 @@ public class Spielfenster extends JInternalFrame implements ActionListener {
         Spieler spieler2 = new Spieler(spieler2Name, spieler2Farbe);
         ArrayList<Integer> geladeneZüge = new ArrayList<>();
         String input;
-        while ((input = in.readLine()) != null) {
+        while((input = in.readLine()) != null){
             geladeneZüge.add(Integer.parseInt(input)); //Solange weitere Zeilen(Züge) vorhanden sind, werden sie der Arraylist hinzugefügt
         }
         new Spielfenster(feldGröße, spieler1, spieler2, geladeneZüge, df); //erstellt das Spielfenster
