@@ -12,7 +12,7 @@ import java.util.Observer;
 /**
  * Das ist ein View fuer graphische Darstellung eines Kubischen Polynoms
  */
-class GraphQView extends JPanel implements Observer {
+public class GraphQView extends JPanel implements Observer {
     Qpolynom myPolynom;
     int points = 2000;
     int minx;
