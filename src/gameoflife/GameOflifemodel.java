@@ -6,7 +6,7 @@ import java.util.Observable;
  * @author Johann Helbig, Albert Renz, Marc Brandt
  */
 
-public class GameOfLifeModel extends Observable {
+class GameOfLifeModel extends Observable {
     private boolean[][] cells;
     private int rows;
     private int columns;

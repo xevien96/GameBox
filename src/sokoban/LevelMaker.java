@@ -9,7 +9,7 @@ import java.io.IOException;
 public class LevelMaker {
 
     public static void main(String[] args) {
-        JFileChooser jfc = new JFileChooser(System.getProperty("user.dir") + "\\src\\sokoban\\Levels\\TextFileLevels");
+        JFileChooser jfc = new JFileChooser(System.getProperty("user.dir") + "\\src\\sokoban\\Levels\\Worlds");
         int returnVal = jfc.showOpenDialog(null);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File levelFile = jfc.getSelectedFile();
