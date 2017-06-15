@@ -2,6 +2,7 @@ package sokoban;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Level implements Serializable {
     private String worldName;
@@ -10,6 +11,7 @@ public class Level implements Serializable {
     private ArrayList<ArrayList<Character>> level = new ArrayList<>();
     private int posZeile;
     private int posSpalte;
+    private Stack<Character> moves = new Stack<>();
 
     public Level(String worldName, int levelNr, String levelName, String levelString) {
         this.worldName = worldName;
@@ -75,10 +77,12 @@ public class Level implements Serializable {
             if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
                 setLevel(posZeile, posSpalte, ' ');
                 posZeile--;
+                moves.push('u');
                 setLevel(posZeile, posSpalte, '@');
             } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
                 setLevel(posZeile, posSpalte, '.');
                 posZeile--;
+                moves.push('u');
                 setLevel(posZeile, posSpalte, '@');
             }
 
@@ -86,10 +90,12 @@ public class Level implements Serializable {
             if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
                 setLevel(posZeile, posSpalte, ' ');
                 posZeile--;
+                moves.push('u');
                 setLevel(posZeile, posSpalte, '+');
             } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
                 setLevel(posZeile, posSpalte, '.');
                 posZeile--;
+                moves.push('u');
                 setLevel(posZeile, posSpalte, '+');
             }
 
@@ -98,11 +104,13 @@ public class Level implements Serializable {
                 if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
                     setLevel(posZeile, posSpalte, ' ');
                     posZeile--;
+                    moves.push('u');
                     setLevel(posZeile, posSpalte, '@');
                     setLevel(posZeile - 1, posSpalte, '$');
                 } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
                     setLevel(posZeile, posSpalte, '.');
                     posZeile--;
+                    moves.push('u');
                     setLevel(posZeile, posSpalte, '@');
                     setLevel(posZeile - 1, posSpalte, '$');
                 }
@@ -111,11 +119,13 @@ public class Level implements Serializable {
                 if (getLevel(posZeile, posSpalte).equals('@')) {  //wir befinden uns auf einem leeren Feld
                     setLevel(posZeile, posSpalte, ' ');
                     posZeile--;
+                    moves.push('u');
                     setLevel(posZeile, posSpalte, '@');
                     setLevel(posZeile - 1, posSpalte, '*');
                 } else if (getLevel(posZeile, posSpalte).equals('+')) {  //wir befinden uns auf einem Ziel
                     setLevel(posZeile, posSpalte, '.');
                     posZeile--;
+                    moves.push('u');
                     setLevel(posZeile, posSpalte, '@');
                     setLevel(posZeile - 1, posSpalte, '*');
                 }
@@ -125,11 +135,13 @@ public class Level implements Serializable {
                 if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
                     setLevel(posZeile, posSpalte, ' ');
                     posZeile--;
+                    moves.push('u');
                     setLevel(posZeile, posSpalte, '+');
                     setLevel(posZeile - 1, posSpalte, '$');
                 } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
                     setLevel(posZeile, posSpalte, '.');
                     posZeile--;
+                    moves.push('u');
                     setLevel(posZeile, posSpalte, '+');
                     setLevel(posZeile - 1, posSpalte, '$');
                 }
@@ -138,11 +150,13 @@ public class Level implements Serializable {
                 if (getLevel(posZeile, posSpalte).equals('@')) {  //wir befinden uns auf einem leeren Feld
                     setLevel(posZeile, posSpalte, ' ');
                     posZeile--;
+                    moves.push('u');
                     setLevel(posZeile, posSpalte, '+');
                     setLevel(posZeile - 1, posSpalte, '*');
                 } else if (getLevel(posZeile, posSpalte).equals('+')) {  //wir befinden uns auf einem Ziel
                     setLevel(posZeile, posSpalte, '.');
                     posZeile--;
+                    moves.push('u');
                     setLevel(posZeile, posSpalte, '+');
                     setLevel(posZeile - 1, posSpalte, '*');
                 }
