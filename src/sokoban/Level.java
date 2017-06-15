@@ -62,38 +62,103 @@ public class Level implements Serializable {
         }
     }
 
-    public Character getLevel(int zeile, int spalte){
+    public Character getLevel(int zeile, int spalte) {
         return level.get(zeile).get(spalte);
     }
 
-    public void setLevel(int zeile, int spalte, Character c){
+    public void setLevel(int zeile, int spalte, Character c) {
         level.get(zeile).set(spalte, c);
     }
 
-    public void moveUp(){
-        if(getLevel(posZeile-1, posSpalte).equals(' ')){
-            if(getLevel(posZeile, posSpalte).equals('@')){
+    public void moveUp() {
+        if (getLevel(posZeile - 1, posSpalte).equals(' ')) {    //über uns ist frei
+            if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
                 setLevel(posZeile, posSpalte, ' ');
                 posZeile--;
                 setLevel(posZeile, posSpalte, '@');
-            }
-            else if(getLevel(posZeile, posSpalte).equals('+')){
+            } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
                 setLevel(posZeile, posSpalte, '.');
                 posZeile--;
                 setLevel(posZeile, posSpalte, '@');
             }
+
+        } else if (getLevel(posZeile - 1, posSpalte).equals('.')) { //über uns ist ein Ziel
+            if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
+                setLevel(posZeile, posSpalte, ' ');
+                posZeile--;
+                setLevel(posZeile, posSpalte, '+');
+            } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
+                setLevel(posZeile, posSpalte, '.');
+                posZeile--;
+                setLevel(posZeile, posSpalte, '+');
+            }
+
+        } else if (getLevel(posZeile - 1, posSpalte).equals('$')) { //über uns ist ein Geldsack
+            if (getLevel(posZeile - 2, posSpalte).equals(' ')) {    //über dem Geldsack ist ein freies Feld
+                if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
+                    setLevel(posZeile, posSpalte, ' ');
+                    posZeile--;
+                    setLevel(posZeile, posSpalte, '@');
+                    setLevel(posZeile - 1, posSpalte, '$');
+                } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
+                    setLevel(posZeile, posSpalte, '.');
+                    posZeile--;
+                    setLevel(posZeile, posSpalte, '@');
+                    setLevel(posZeile - 1, posSpalte, '$');
+                }
+
+            } else if (getLevel(posZeile - 2, posSpalte).equals('.')) { //über dem Geldsack ist ein Ziel
+                if (getLevel(posZeile, posSpalte).equals('@')) {  //wir befinden uns auf einem leeren Feld
+                    setLevel(posZeile, posSpalte, ' ');
+                    posZeile--;
+                    setLevel(posZeile, posSpalte, '@');
+                    setLevel(posZeile - 1, posSpalte, '*');
+                } else if (getLevel(posZeile, posSpalte).equals('+')) {  //wir befinden uns auf einem Ziel
+                    setLevel(posZeile, posSpalte, '.');
+                    posZeile--;
+                    setLevel(posZeile, posSpalte, '@');
+                    setLevel(posZeile - 1, posSpalte, '*');
+                }
+            }
+        } else if (getLevel(posZeile - 1, posSpalte).equals('*')) { //über uns befindet sich ein Geldsack auf einem Ziel
+            if (getLevel(posZeile - 2, posSpalte).equals(' ')) {    //über dem Geldsack ist ein freies Feld
+                if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
+                    setLevel(posZeile, posSpalte, ' ');
+                    posZeile--;
+                    setLevel(posZeile, posSpalte, '+');
+                    setLevel(posZeile - 1, posSpalte, '$');
+                } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
+                    setLevel(posZeile, posSpalte, '.');
+                    posZeile--;
+                    setLevel(posZeile, posSpalte, '+');
+                    setLevel(posZeile - 1, posSpalte, '$');
+                }
+
+            } else if (getLevel(posZeile - 2, posSpalte).equals('.')) { //über dem Geldsack ist ein Ziel
+                if (getLevel(posZeile, posSpalte).equals('@')) {  //wir befinden uns auf einem leeren Feld
+                    setLevel(posZeile, posSpalte, ' ');
+                    posZeile--;
+                    setLevel(posZeile, posSpalte, '+');
+                    setLevel(posZeile - 1, posSpalte, '*');
+                } else if (getLevel(posZeile, posSpalte).equals('+')) {  //wir befinden uns auf einem Ziel
+                    setLevel(posZeile, posSpalte, '.');
+                    posZeile--;
+                    setLevel(posZeile, posSpalte, '+');
+                    setLevel(posZeile - 1, posSpalte, '*');
+                }
+            }
         }
     }
 
-    public void moveDown(){
+    public void moveDown() {
 
     }
 
-    public void moveLeft(){
+    public void moveLeft() {
 
     }
 
-    public void moveRight(){
+    public void moveRight() {
 
     }
 }
