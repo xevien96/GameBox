@@ -165,14 +165,278 @@ public class Level implements Serializable {
     }
 
     public void moveDown() {
+        if (getLevel(posZeile + 1, posSpalte).equals(' ')) {    //unter uns ist frei
+            if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
+                setLevel(posZeile, posSpalte, ' ');
+                posZeile++;
+                moves.push('d');
+                setLevel(posZeile, posSpalte, '@');
+            } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
+                setLevel(posZeile, posSpalte, '.');
+                posZeile++;
+                moves.push('d');
+                setLevel(posZeile, posSpalte, '@');
+            }
 
-    }
+        } else if (getLevel(posZeile + 1, posSpalte).equals('.')) { //unter uns ist ein Ziel
+            if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
+                setLevel(posZeile, posSpalte, ' ');
+                posZeile++;
+                moves.push('d');
+                setLevel(posZeile, posSpalte, '+');
+            } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
+                setLevel(posZeile, posSpalte, '.');
+                posZeile++;
+                moves.push('d');
+                setLevel(posZeile, posSpalte, '+');
+            }
 
-    public void moveLeft() {
+        } else if (getLevel(posZeile + 1, posSpalte).equals('$')) { //unter uns ist ein Geldsack
+            if (getLevel(posZeile + 2, posSpalte).equals(' ')) {    //unter dem Geldsack ist ein freies Feld
+                if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
+                    setLevel(posZeile, posSpalte, ' ');
+                    posZeile++;
+                    moves.push('d');
+                    setLevel(posZeile, posSpalte, '@');
+                    setLevel(posZeile + 1, posSpalte, '$');
+                } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
+                    setLevel(posZeile, posSpalte, '.');
+                    posZeile++;
+                    moves.push('d');
+                    setLevel(posZeile, posSpalte, '@');
+                    setLevel(posZeile + 1, posSpalte, '$');
+                }
 
+            } else if (getLevel(posZeile + 2, posSpalte).equals('.')) { //unter dem Geldsack ist ein Ziel
+                if (getLevel(posZeile, posSpalte).equals('@')) {  //wir befinden uns auf einem leeren Feld
+                    setLevel(posZeile, posSpalte, ' ');
+                    posZeile++;
+                    moves.push('d');
+                    setLevel(posZeile, posSpalte, '@');
+                    setLevel(posZeile + 1, posSpalte, '*');
+                } else if (getLevel(posZeile, posSpalte).equals('+')) {  //wir befinden uns auf einem Ziel
+                    setLevel(posZeile, posSpalte, '.');
+                    posZeile++;
+                    moves.push('d');
+                    setLevel(posZeile, posSpalte, '@');
+                    setLevel(posZeile + 1, posSpalte, '*');
+                }
+            }
+        } else if (getLevel(posZeile + 1, posSpalte).equals('*')) { //unter uns befindet sich ein Geldsack auf einem Ziel
+            if (getLevel(posZeile + 2, posSpalte).equals(' ')) {    //unter dem Geldsack ist ein freies Feld
+                if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
+                    setLevel(posZeile, posSpalte, ' ');
+                    posZeile++;
+                    moves.push('d');
+                    setLevel(posZeile, posSpalte, '+');
+                    setLevel(posZeile + 1, posSpalte, '$');
+                } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
+                    setLevel(posZeile, posSpalte, '.');
+                    posZeile++;
+                    moves.push('d');
+                    setLevel(posZeile, posSpalte, '+');
+                    setLevel(posZeile + 1, posSpalte, '$');
+                }
+
+            } else if (getLevel(posZeile + 2, posSpalte).equals('.')) { //unter dem Geldsack ist ein Ziel
+                if (getLevel(posZeile, posSpalte).equals('@')) {  //wir befinden uns auf einem leeren Feld
+                    setLevel(posZeile, posSpalte, ' ');
+                    posZeile++;
+                    moves.push('d');
+                    setLevel(posZeile, posSpalte, '+');
+                    setLevel(posZeile + 1, posSpalte, '*');
+                } else if (getLevel(posZeile, posSpalte).equals('+')) {  //wir befinden uns auf einem Ziel
+                    setLevel(posZeile, posSpalte, '.');
+                    posZeile++;
+                    moves.push('d');
+                    setLevel(posZeile, posSpalte, '+');
+                    setLevel(posZeile + 1, posSpalte, '*');
+                }
+            }
+        }
     }
 
     public void moveRight() {
+        if (getLevel(posZeile, posSpalte + 1).equals(' ')) {    //rechts neben uns ist frei
+            if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
+                setLevel(posZeile, posSpalte, ' ');
+                posSpalte++;
+                moves.push('r');
+                setLevel(posZeile, posSpalte, '@');
+            } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
+                setLevel(posZeile, posSpalte, '.');
+                posSpalte++;
+                moves.push('r');
+                setLevel(posZeile, posSpalte, '@');
+            }
 
+        } else if (getLevel(posZeile, posSpalte + 1).equals('.')) { //rechts neben uns ist ein Ziel
+            if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
+                setLevel(posZeile, posSpalte, ' ');
+                posSpalte++;
+                moves.push('r');
+                setLevel(posZeile, posSpalte, '+');
+            } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
+                setLevel(posZeile, posSpalte, '.');
+                posSpalte++;
+                moves.push('r');
+                setLevel(posZeile, posSpalte, '+');
+            }
+
+        } else if (getLevel(posZeile, posSpalte + 1).equals('$')) { //rechts neben uns ist ein Geldsack
+            if (getLevel(posZeile, posSpalte + 2).equals(' ')) {    //rechts neben dem Geldsack ist ein freies Feld
+                if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
+                    setLevel(posZeile, posSpalte, ' ');
+                    posSpalte++;
+                    moves.push('r');
+                    setLevel(posZeile, posSpalte, '@');
+                    setLevel(posZeile, posSpalte + 1, '$');
+                } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
+                    setLevel(posZeile, posSpalte, '.');
+                    posSpalte++;
+                    moves.push('r');
+                    setLevel(posZeile, posSpalte, '@');
+                    setLevel(posZeile, posSpalte + 1, '$');
+                }
+
+            } else if (getLevel(posZeile, posSpalte + 2).equals('.')) { //rechts neben dem Geldsack ist ein Ziel
+                if (getLevel(posZeile, posSpalte).equals('@')) {  //wir befinden uns auf einem leeren Feld
+                    setLevel(posZeile, posSpalte, ' ');
+                    posSpalte++;
+                    moves.push('r');
+                    setLevel(posZeile, posSpalte, '@');
+                    setLevel(posZeile, posSpalte + 1, '*');
+                } else if (getLevel(posZeile, posSpalte).equals('+')) {  //wir befinden uns auf einem Ziel
+                    setLevel(posZeile, posSpalte, '.');
+                    posSpalte++;
+                    moves.push('r');
+                    setLevel(posZeile, posSpalte, '@');
+                    setLevel(posZeile, posSpalte + 1, '*');
+                }
+            }
+        } else if (getLevel(posZeile, posSpalte + 1).equals('*')) { //rechts neben uns befindet sich ein Geldsack auf einem Ziel
+            if (getLevel(posZeile, posSpalte + 2).equals(' ')) {    //rechts neben dem Geldsack ist ein freies Feld
+                if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
+                    setLevel(posZeile, posSpalte, ' ');
+                    posSpalte++;
+                    moves.push('r');
+                    setLevel(posZeile, posSpalte, '+');
+                    setLevel(posZeile, posSpalte + 1, '$');
+                } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
+                    setLevel(posZeile, posSpalte, '.');
+                    posSpalte++;
+                    moves.push('r');
+                    setLevel(posZeile, posSpalte, '+');
+                    setLevel(posZeile, posSpalte + 1, '$');
+                }
+
+            } else if (getLevel(posZeile, posSpalte + 2).equals('.')) { //rechts neben dem Geldsack ist ein Ziel
+                if (getLevel(posZeile, posSpalte).equals('@')) {  //wir befinden uns auf einem leeren Feld
+                    setLevel(posZeile, posSpalte, ' ');
+                    posSpalte++;
+                    moves.push('r');
+                    setLevel(posZeile, posSpalte, '+');
+                    setLevel(posZeile, posSpalte + 1, '*');
+                } else if (getLevel(posZeile, posSpalte).equals('+')) {  //wir befinden uns auf einem Ziel
+                    setLevel(posZeile, posSpalte, '.');
+                    posSpalte++;
+                    moves.push('r');
+                    setLevel(posZeile, posSpalte, '+');
+                    setLevel(posZeile + 1, posSpalte, '*');
+                }
+            }
+        }
+    }
+
+    public void moveLeft() {
+        if (getLevel(posZeile, posSpalte - 1).equals(' ')) {    //links neben uns ist frei
+            if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
+                setLevel(posZeile, posSpalte, ' ');
+                posSpalte--;
+                moves.push('l');
+                setLevel(posZeile, posSpalte, '@');
+            } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
+                setLevel(posZeile, posSpalte, '.');
+                posSpalte--;
+                moves.push('l');
+                setLevel(posZeile, posSpalte, '@');
+            }
+
+        } else if (getLevel(posZeile, posSpalte - 1).equals('.')) { //links neben uns ist ein Ziel
+            if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
+                setLevel(posZeile, posSpalte, ' ');
+                posSpalte--;
+                moves.push('l');
+                setLevel(posZeile, posSpalte, '+');
+            } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
+                setLevel(posZeile, posSpalte, '.');
+                posSpalte--;
+                moves.push('l');
+                setLevel(posZeile, posSpalte, '+');
+            }
+
+        } else if (getLevel(posZeile, posSpalte - 1).equals('$')) { //links neben uns ist ein Geldsack
+            if (getLevel(posZeile, posSpalte - 2).equals(' ')) {    //links neben dem Geldsack ist ein freies Feld
+                if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
+                    setLevel(posZeile, posSpalte, ' ');
+                    posSpalte--;
+                    moves.push('l');
+                    setLevel(posZeile, posSpalte, '@');
+                    setLevel(posZeile, posSpalte - 1, '$');
+                } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
+                    setLevel(posZeile, posSpalte, '.');
+                    posSpalte--;
+                    moves.push('l');
+                    setLevel(posZeile, posSpalte, '@');
+                    setLevel(posZeile, posSpalte - 1, '$');
+                }
+
+            } else if (getLevel(posZeile, posSpalte - 2).equals('.')) { //links neben dem Geldsack ist ein Ziel
+                if (getLevel(posZeile, posSpalte).equals('@')) {  //wir befinden uns auf einem leeren Feld
+                    setLevel(posZeile, posSpalte, ' ');
+                    posSpalte--;
+                    moves.push('l');
+                    setLevel(posZeile, posSpalte, '@');
+                    setLevel(posZeile, posSpalte - 1, '*');
+                } else if (getLevel(posZeile, posSpalte).equals('+')) {  //wir befinden uns auf einem Ziel
+                    setLevel(posZeile, posSpalte, '.');
+                    posSpalte--;
+                    moves.push('l');
+                    setLevel(posZeile, posSpalte, '@');
+                    setLevel(posZeile, posSpalte - 1, '*');
+                }
+            }
+        } else if (getLevel(posZeile, posSpalte - 1).equals('*')) { //links neben uns befindet sich ein Geldsack auf einem Ziel
+            if (getLevel(posZeile, posSpalte - 2).equals(' ')) {    //links neben dem Geldsack ist ein freies Feld
+                if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
+                    setLevel(posZeile, posSpalte, ' ');
+                    posSpalte--;
+                    moves.push('l');
+                    setLevel(posZeile, posSpalte, '+');
+                    setLevel(posZeile, posSpalte - 1, '$');
+                } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
+                    setLevel(posZeile, posSpalte, '.');
+                    posSpalte--;
+                    moves.push('l');
+                    setLevel(posZeile, posSpalte, '+');
+                    setLevel(posZeile, posSpalte - 1, '$');
+                }
+
+            } else if (getLevel(posZeile, posSpalte - 2).equals('.')) { //links neben dem Geldsack ist ein Ziel
+                if (getLevel(posZeile, posSpalte).equals('@')) {  //wir befinden uns auf einem leeren Feld
+                    setLevel(posZeile, posSpalte, ' ');
+                    posSpalte--;
+                    moves.push('l');
+                    setLevel(posZeile, posSpalte, '+');
+                    setLevel(posZeile, posSpalte - 1, '*');
+                } else if (getLevel(posZeile, posSpalte).equals('+')) {  //wir befinden uns auf einem Ziel
+                    setLevel(posZeile, posSpalte, '.');
+                    posSpalte--;
+                    moves.push('l');
+                    setLevel(posZeile, posSpalte, '+');
+                    setLevel(posZeile - 1, posSpalte, '*');
+                }
+            }
+        }
     }
 }
