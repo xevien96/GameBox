@@ -282,7 +282,7 @@ Level 24
 #######
 
 Level 25
-;Aymeric du Peloux & François Marques
+;Aymeric du Peloux & FranÃ§ois Marques
 'NABOKOSMOS 25'
 ##### ####
 #   # #  #
