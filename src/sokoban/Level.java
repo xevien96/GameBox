@@ -546,4 +546,15 @@ public class Level implements Serializable {
         }
         moveLeft();
     }
+
+    public boolean checkSolved() {
+        for (ArrayList<Character> ar : level) {
+            for (Character c : ar) {
+                if (ar.equals('.') || ar.equals('+')) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
