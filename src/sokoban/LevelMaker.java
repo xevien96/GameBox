@@ -6,6 +6,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * @author Johann Helbig, Marc Brandt, Albert Renz
+ */
 public class LevelMaker {
 
     public static void main(String[] args) {

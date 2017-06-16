@@ -5,12 +5,16 @@ import dragsafe.DragSafe;
 import drehsafe.DrehSafe;
 import gameoflife.ChildFrame;
 import mvcviewer.MVCexample;
-import siebenSpaltenPrim.SiebenSpaltenPrim;
 import regenbogen.Regenbogen;
+import siebenSpaltenPrim.SiebenSpaltenPrim;
+import sokoban.sokobanStart;
 
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * @author Johann Helbig, Marc Brandt, Albert Renz
+ */
 public class Hauptmenue extends JInternalFrame {
     DesktopFrame mydesk;
 
@@ -47,7 +51,6 @@ public class Hauptmenue extends JInternalFrame {
         cp.add(gameButtonPanel);
 
         //Buttons für die einzelnen Spiele erstellen mit ActionListener
-        //TODO ActionListener
         JButton siebenSpaltenButton = new JButton("Sieben Prim");
         siebenSpaltenButton.setMaximumSize(buttonSize);
         siebenSpaltenButton.setAlignmentX(CENTER_ALIGNMENT);
@@ -86,6 +89,7 @@ public class Hauptmenue extends JInternalFrame {
         JButton sokobanButton = new JButton("Sokoban");
         sokobanButton.setMaximumSize(buttonSize);
         sokobanButton.setAlignmentX(CENTER_ALIGNMENT);
+        sokobanButton.addActionListener(e -> mydesk.addChild(new sokobanStart(mydesk), 30, 30));
 
         //Buttons den Panels hinzufügen
         gameButtonPanellinks.add(Box.createVerticalGlue());

@@ -17,14 +17,13 @@ import java.util.ArrayList;
  * Hauptmenü für das Spiel.
  */
 public class Startfenster extends JInternalFrame {
+    private final JFileChooser jFileChooser = new JFileChooser(System.getProperty("user.dir")); // getProperty setzt das Verzeichnis auf das ausführende Verzeichnis
     private DesktopFrame myDesk;
-
     private Color[] colors1 = new Color[]{Color.RED, Color.BLUE, Color.GREEN, Color.BLACK, Color.ORANGE, new Color(115, 22, 165)}; //Farbenarray für Spieler1
     private int color1 = 0;
     private Color[] colors2 = new Color[]{Color.MAGENTA, Color.CYAN, Color.YELLOW, Color.DARK_GRAY, new Color(115, 23, 165), Color.PINK}; //Farbenarray für Spieler2
     private int color2 = 0;
     private JLabel ueberschrift;
-
     private JPanel p1, p2, p3;
     private Container cp;
     private JButton exitButton;
@@ -39,8 +38,6 @@ public class Startfenster extends JInternalFrame {
     private JTextField spieler2Name;
     private JButton spieler1Farbe;
     private JButton spieler2Farbe;
-
-    private final JFileChooser jFileChooser = new JFileChooser(System.getProperty("user.dir")); // getProperty setzt das Verzeichnis auf das ausführende Verzeichnis
     private FileNameExtensionFilter fileNameExtensionFilter = new FileNameExtensionFilter("Text Files", "txt"); // Filter für txt Dateien
 
     public Startfenster(DesktopFrame df) {
@@ -55,7 +52,7 @@ public class Startfenster extends JInternalFrame {
     }
 
     /**
-     * Initialisiert das Startfenster mit einem Titel und einer Größe
+     * Initialisiert das Startmenü mit einem Titel und einer Größe
      * Als Layout dient ein BorderLayout
      */
     private void initGui() {

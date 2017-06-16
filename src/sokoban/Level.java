@@ -1,9 +1,12 @@
 package sokoban;
 
-import java.io.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Stack;
 
+/**
+ * @author Johann Helbig, Marc Brandt, Albert Renz
+ */
 public class Level implements Serializable {
     private String worldName;
     private int levelNr;
@@ -444,15 +447,19 @@ public class Level implements Serializable {
         switch (moves.peek()) {
             case 'u':
                 undoUp();
+                moves.pop();
                 break;
             case 'd':
                 undoDown();
+                moves.pop();
                 break;
             case 'l':
                 undoLeft();
+                moves.pop();
                 break;
             case 'r':
                 undoRight();
+                moves.pop();
                 break;
             default:
                 break;
@@ -550,7 +557,7 @@ public class Level implements Serializable {
     public boolean checkSolved() {
         for (ArrayList<Character> ar : level) {
             for (Character c : ar) {
-                if (ar.equals('.') || ar.equals('+')) {
+                if (c.equals('.') || c.equals('+')) {
                     return false;
                 }
             }
