@@ -564,4 +564,8 @@ public class Level implements Serializable {
         }
         return true;
     }
+
+    public String toString() {
+        return "Level " + levelNr + ": " + levelName;
+    }
 }

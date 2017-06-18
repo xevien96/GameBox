@@ -5,22 +5,15 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  * @author Johann Helbig, Marc Brandt, Albert Renz
  */
 public class LevelMaker {
-
-    public static void main(String[] args) {
-        JFileChooser jfc = new JFileChooser(System.getProperty("user.dir") + "\\src\\sokoban\\Levels\\Worlds");
-        int returnVal = jfc.showOpenDialog(null);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File levelFile = jfc.getSelectedFile();
-            makeLevelsFromFile(levelFile);
-        }
-    }
-
-    public static void makeLevelsFromFile(File levelFile) {
+    public static Vector<Level> makeLevelsFromFile(File levelFile) {
+        Vector<Level> out = new Vector<>();
         try {
             FileReader input = new FileReader(levelFile);
             BufferedReader reader = new BufferedReader(input);
@@ -34,19 +27,20 @@ public class LevelMaker {
                     levelNr = Integer.parseInt(temp.replaceAll("[\\D]", ""));
                     temp = reader.readLine();
                     if (temp.startsWith("'")) {
-                        levelName = temp.replaceAll("[']","");
+                        levelName = temp.replaceAll("[']", "");
                         temp = reader.readLine();
                     }
                     while (!temp.equals("")) {
                         level += temp + "n";
                         temp = reader.readLine();
                     }
-                    new Level(worldName, levelNr, levelName, level);
+                    out.add(new Level(worldName, levelNr, levelName, level));
                     level = "";
                 }
             }
         } catch (IOException e) {
             System.err.println(e);
         }
+        return out;
     }
 }

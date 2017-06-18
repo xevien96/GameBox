@@ -4,11 +4,20 @@ import hauptmenü.DesktopFrame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  * @author Johann Helbig, Marc Brandt, Albert Renz
  */
 public class sokobanStart extends JInternalFrame {
+    public static Vector<Level> minicosmos;
+
+    static {
+        minicosmos = LevelMaker.makeLevelsFromFile(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "src" + System.getProperty("file.separator") + "sokoban" + System.getProperty("file.separator") + "Levels" + System.getProperty("file.separator") + "Worlds" + System.getProperty("file.separator") + "minicosmos.txt"));
+    }
+
     private DesktopFrame myDesk;
 
     private JLabel ueberschrift;
@@ -69,6 +78,7 @@ public class sokobanStart extends JInternalFrame {
         world2 = new JRadioButton("Nabokosmos");
         world3 = new JRadioButton("Yoshimurase");
         ButtonGroup welten = new ButtonGroup();
+        world1.setSelected(true);
         welten.add(world1);
         welten.add(world2);
         welten.add(world3);
@@ -81,10 +91,8 @@ public class sokobanStart extends JInternalFrame {
         JPanel p21 = new JPanel(); // Panel für Checkbox der Levelauswahl
         p21.setLayout(new BoxLayout(p21, BoxLayout.Y_AXIS));
         levellabel = new JLabel("Levelauswahl:");
-        level = new JComboBox();
-        level.setMaximumSize(new Dimension(80, 35));
-        level.addItem("Level 1");
-        level.addItem("Level 2");
+        level = new JComboBox(minicosmos);
+        level.setMaximumSize(new Dimension(200, 35));
 
 
         p21.add(levellabel);
