@@ -77,10 +77,6 @@ public class Level extends Observable implements Serializable {
         }
     }
 
-    public Level(Level previousLevel, Character move) {
-
-    }
-
     public int getZeilenAnzahl() {
         return level.size();
     }
