@@ -2,12 +2,13 @@ package sokoban;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Observable;
 import java.util.Stack;
 
 /**
  * @author Johann Helbig, Marc Brandt, Albert Renz
  */
-public class Level implements Serializable {
+public class Level extends Observable implements Serializable {
     private String worldName;
     private int levelNr;
     private String levelName;
@@ -183,6 +184,8 @@ public class Level implements Serializable {
                 }
             }
         }
+        setChanged();
+        notifyObservers();
     }
 
     public void moveDown() {
@@ -275,6 +278,8 @@ public class Level implements Serializable {
                 }
             }
         }
+        setChanged();
+        notifyObservers();
     }
 
     public void moveRight() {
@@ -367,6 +372,8 @@ public class Level implements Serializable {
                 }
             }
         }
+        setChanged();
+        notifyObservers();
     }
 
     public void moveLeft() {
@@ -459,6 +466,8 @@ public class Level implements Serializable {
                 }
             }
         }
+        setChanged();
+        notifyObservers();
     }
 
     public void undo() {
@@ -482,6 +491,8 @@ public class Level implements Serializable {
             default:
                 break;
         }
+        setChanged();
+        notifyObservers();
     }
 
     private void undoUp() {

@@ -10,7 +10,7 @@ import java.util.Vector;
 /**
  * @author Johann Helbig, Marc Brandt, Albert Renz
  */
-public class sokobanStart extends JInternalFrame {
+public class SokobanStart extends JInternalFrame {
     public static Vector<Level> minicosmos;
     public static Vector<Level> nabokosmos;
     public static Vector<Level> yoshiomurase;
@@ -38,7 +38,7 @@ public class sokobanStart extends JInternalFrame {
     private JComboBox level;
 
 
-    public sokobanStart(DesktopFrame df) {
+    public SokobanStart(DesktopFrame df) {
         super("Startmenü", false, true, false, true);
         myDesk = df;
 
