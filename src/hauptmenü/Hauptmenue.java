@@ -7,7 +7,7 @@ import gameoflife.ChildFrame;
 import mvcviewer.MVCexample;
 import regenbogen.Regenbogen;
 import siebenSpaltenPrim.SiebenSpaltenPrim;
-import sokoban.sokobanStart;
+import sokoban.SokobanStart;
 
 import javax.swing.*;
 import java.awt.*;
@@ -89,7 +89,7 @@ public class Hauptmenue extends JInternalFrame {
         JButton sokobanButton = new JButton("Sokoban");
         sokobanButton.setMaximumSize(buttonSize);
         sokobanButton.setAlignmentX(CENTER_ALIGNMENT);
-        sokobanButton.addActionListener(e -> mydesk.addChild(new sokobanStart(mydesk), 30, 30));
+        sokobanButton.addActionListener(e -> mydesk.addChild(new SokobanStart(mydesk), 30, 30));
 
         //Buttons den Panels hinzufügen
         gameButtonPanellinks.add(Box.createVerticalGlue());

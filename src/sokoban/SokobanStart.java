@@ -121,7 +121,7 @@ public class SokobanStart extends JInternalFrame {
         exitButton.addActionListener(e -> dispose());
 
         startGame = new JButton("Neues Spiel"); //Neues Spiel
-        //startGame.addActionListener(e -> ());
+        startGame.addActionListener(e -> myDesk.addChild(new SokobanLevelFenster(myDesk, (Level)level.getSelectedItem()),30,30));
 
         loadButton = new JButton("Spiel laden"); //Spiel laden aus Textdatei
         //loadButton.addActionListener(e -> ());

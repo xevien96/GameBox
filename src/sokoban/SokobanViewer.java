@@ -18,13 +18,14 @@ public class SokobanViewer extends JPanel implements Observer {
         level.addObserver(this);
         setLayout(new GridLayout(level.getZeilenAnzahl(), level.getMaxSpalte()));
         spielfeld = new JButton[level.getZeilenAnzahl()][level.getMaxSpalte()];
-        for (JButton[] ba : spielfeld) {
-            for (JButton b : ba) {
-                b = new JButton();
-                b.setBackground(freeColor);
-                add(b);
+        for (int i = 0; i < level.getZeilenAnzahl(); i++) {
+            for (int j = 0; j < level.getMaxSpalte(); j++) {
+                spielfeld[i][j] = new JButton();
+                spielfeld[i][j].setBackground(freeColor);
+                add(spielfeld[i][j]);
             }
         }
+
     }
 
     public void paintComponent(Graphics g) {

@@ -21,19 +21,19 @@ public class SokobanLevelFenster extends JInternalFrame {
     private KeyListener k1 = new KeyAdapter() {
         @Override
         public void keyPressed(KeyEvent e) {
-            if(e.equals(KeyEvent.VK_W)){
+            if (e.getKeyCode() == KeyEvent.VK_UP) {
                 level.moveUp();
             }
-            if(e.equals(KeyEvent.VK_S)){
+            if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                 level.moveDown();
             }
-            if(e.equals(KeyEvent.VK_A)){
+            if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                 level.moveLeft();
             }
-            if(e.equals(KeyEvent.VK_D)){
+            if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                 level.moveRight();
             }
-            if(e.equals(KeyEvent.VK_U)){
+            if (e.getKeyCode() == KeyEvent.VK_U) {
                 level.undo();
             }
         }
@@ -43,7 +43,10 @@ public class SokobanLevelFenster extends JInternalFrame {
         super(lvl.toString(), true, true, true, true);
         myDesk = df;
         level = lvl;
+        setSize(400, 400);
         initp1();
+
+        addKeyListener(k1);
 
         addInternalFrameListener(new InternalFrameAdapter() {
             @Override
@@ -54,7 +57,7 @@ public class SokobanLevelFenster extends JInternalFrame {
         });
     }
 
-    private void initp1(){
+    private void initp1() {
         p1 = new SokobanViewer(level);
         cp.add(p1);
     }

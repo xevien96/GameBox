@@ -72,7 +72,8 @@ public class Level extends Observable implements Serializable {
             }
         }
         for (ArrayList<Character> ar : level) {
-            for (int i = 0; i < maxSpalte - ar.size(); i++) {
+            int temp = ar.size();
+            for (int i = 0; i < maxSpalte - temp; i++) {
                 ar.add(' ');
             }
         }
