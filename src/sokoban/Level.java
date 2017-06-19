@@ -70,6 +70,11 @@ public class Level implements Serializable {
                     break;
             }
         }
+        for (ArrayList<Character> ar : level) {
+            for (int i = 0; i < maxSpalte - ar.size(); i++) {
+                ar.add(' ');
+            }
+        }
     }
 
     public int getZeilenAnzahl() {
