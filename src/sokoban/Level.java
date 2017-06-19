@@ -3,7 +3,6 @@ package sokoban;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observable;
-import java.util.Stack;
 
 /**
  * @author Johann Helbig, Marc Brandt, Albert Renz
