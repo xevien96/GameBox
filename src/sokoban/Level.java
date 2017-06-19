@@ -79,6 +79,10 @@ public class Level extends Observable implements Serializable {
         }
     }
 
+    public Stack<Character> getMoves() {
+        return moves;
+    }
+
     public int getZeilenAnzahl() {
         return level.size();
     }
@@ -472,116 +476,46 @@ public class Level extends Observable implements Serializable {
     }
 
     public void undo() {
-        switch (moves.peek()) {
-            case 'u':
-                undoUp();
-                moves.pop();
-                break;
-            case 'd':
-                undoDown();
-                moves.pop();
-                break;
-            case 'l':
-                undoLeft();
-                moves.pop();
-                break;
-            case 'r':
-                undoRight();
-                moves.pop();
-                break;
-            default:
-                break;
+        if (moves.size() > 0) {
+            switch (moves.peek()) {
+                case 'u':
+                    undoUp();
+                    moves.pop();
+                    break;
+                case 'd':
+                    undoDown();
+                    moves.pop();
+                    break;
+                case 'l':
+                    undoLeft();
+                    moves.pop();
+                    break;
+                case 'r':
+                    undoRight();
+                    moves.pop();
+                    break;
+                default:
+                    break;
+            }
+            setChanged();
+            notifyObservers();
         }
-        setChanged();
-        notifyObservers();
     }
 
-    private void undoUp() {
-        if (getLevel(posZeile - 1, posSpalte).equals('$')) {    //über uns ist eine kiste
-            if (getLevel(posZeile, posSpalte).equals('@')) {  // wir stehen auf einem freien Feld
-                setLevel(posZeile - 1, posSpalte, ' ');
-                setLevel(posZeile, posSpalte, '$');
-            } else if (getLevel(posZeile, posSpalte).equals('+')) { // wir stehen auf einem Ziel
-                setLevel(posZeile - 1, posSpalte, ' ');
-                setLevel(posZeile, posSpalte, '*');
-            }
+    public void undoUp() {
 
-        } else if (getLevel(posZeile - 1, posSpalte).equals('*')) {  // über uns ist eine Kiste auf einem Ziel
-            if (getLevel(posZeile, posSpalte).equals('@')) {  // wir stehen auf einem freien Feld
-                setLevel(posZeile - 1, posSpalte, '.');
-                setLevel(posZeile, posSpalte, '$');
-            } else if (getLevel(posZeile, posSpalte).equals('+')) { // wir stehen auf einem Ziel
-                setLevel(posZeile - 1, posSpalte, '.');
-                setLevel(posZeile, posSpalte, '*');
-            }
-        }
-        moveDown();
     }
 
-    private void undoDown() {
-        if (getLevel(posZeile + 1, posSpalte).equals('$')) {    //unter uns ist eine kiste
-            if (getLevel(posZeile, posSpalte).equals('@')) {  // wir stehen auf einem freien Feld
-                setLevel(posZeile + 1, posSpalte, ' ');
-                setLevel(posZeile, posSpalte, '$');
-            } else if (getLevel(posZeile, posSpalte).equals('+')) { // wir stehen auf einem Ziel
-                setLevel(posZeile + 1, posSpalte, ' ');
-                setLevel(posZeile, posSpalte, '*');
-            }
+    public void undoDown(){
 
-        } else if (getLevel(posZeile + 1, posSpalte).equals('*')) {  // unter uns ist eine Kiste auf einem Ziel
-            if (getLevel(posZeile, posSpalte).equals('@')) {  // wir stehen auf einem freien Feld
-                setLevel(posZeile + 1, posSpalte, '.');
-                setLevel(posZeile, posSpalte, '$');
-            } else if (getLevel(posZeile, posSpalte).equals('+')) { // wir stehen auf einem Ziel
-                setLevel(posZeile + 1, posSpalte, '.');
-                setLevel(posZeile, posSpalte, '*');
-            }
-        }
-        moveUp();
     }
 
-    private void undoLeft() {
-        if (getLevel(posZeile, posSpalte - 1).equals('$')) {    //links von uns ist eine kiste
-            if (getLevel(posZeile, posSpalte).equals('@')) {  // wir stehen auf einem freien Feld
-                setLevel(posZeile, posSpalte - 1, ' ');
-                setLevel(posZeile, posSpalte, '$');
-            } else if (getLevel(posZeile, posSpalte).equals('+')) { // wir stehen auf einem Ziel
-                setLevel(posZeile, posSpalte - 1, ' ');
-                setLevel(posZeile, posSpalte, '*');
-            }
+    public void undoLeft(){
 
-        } else if (getLevel(posZeile, posSpalte - 1).equals('*')) {  // links von uns ist eine Kiste auf einem Ziel
-            if (getLevel(posZeile, posSpalte).equals('@')) {  // wir stehen auf einem freien Feld
-                setLevel(posZeile, posSpalte - 1, '.');
-                setLevel(posZeile, posSpalte, '$');
-            } else if (getLevel(posZeile, posSpalte).equals('+')) { // wir stehen auf einem Ziel
-                setLevel(posZeile, posSpalte - 1, '.');
-                setLevel(posZeile, posSpalte, '*');
-            }
-        }
-        moveRight();
     }
 
-    private void undoRight() {
-        if (getLevel(posZeile, posSpalte + 1).equals('$')) {    //rechts von uns ist eine kiste
-            if (getLevel(posZeile, posSpalte).equals('@')) {  // wir stehen auf einem freien Feld
-                setLevel(posZeile, posSpalte + 1, ' ');
-                setLevel(posZeile, posSpalte, '$');
-            } else if (getLevel(posZeile, posSpalte).equals('+')) { // wir stehen auf einem Ziel
-                setLevel(posZeile, posSpalte + 1, ' ');
-                setLevel(posZeile, posSpalte, '*');
-            }
+    public void undoRight(){
 
-        } else if (getLevel(posZeile, posSpalte + 1).equals('*')) {  // rechts von uns ist eine Kiste auf einem Ziel
-            if (getLevel(posZeile, posSpalte).equals('@')) {  // wir stehen auf einem freien Feld
-                setLevel(posZeile, posSpalte + 1, '.');
-                setLevel(posZeile, posSpalte, '$');
-            } else if (getLevel(posZeile, posSpalte).equals('+')) { // wir stehen auf einem Ziel
-                setLevel(posZeile, posSpalte + 1, '.');
-                setLevel(posZeile, posSpalte, '*');
-            }
-        }
-        moveLeft();
     }
 
     public boolean checkSolved() {
