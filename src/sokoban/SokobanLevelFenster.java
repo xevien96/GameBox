@@ -21,7 +21,7 @@ public class SokobanLevelFenster extends JInternalFrame {
     public SokobanLevelFenster(DesktopFrame df, Level lvl) {
         super(lvl.toString(), true, true, true, true);
         myDesk = df;
-        level = lvl;
+        level = new Level(lvl);
         setSize(400, 400);
         cp.setLayout(new BoxLayout(cp, BoxLayout.Y_AXIS));
         initp1();

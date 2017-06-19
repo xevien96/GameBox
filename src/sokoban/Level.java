@@ -77,6 +77,18 @@ public class Level extends Observable implements Serializable {
         }
     }
 
+    public Level(Level previous) {
+        worldName = previous.worldName;
+        levelNr = previous.levelNr;
+        levelName = previous.levelName;
+        for (ArrayList<Character> zeile : previous.level) {
+            level.add((ArrayList<Character>) zeile.clone());
+        }
+        maxSpalte = previous.maxSpalte;
+        posZeile = previous.posZeile;
+        posSpalte = previous.posSpalte;
+    }
+
     public int getZeilenAnzahl() {
         return level.size();
     }
