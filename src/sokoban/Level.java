@@ -12,6 +12,7 @@ public class Level implements Serializable {
     private int levelNr;
     private String levelName;
     private ArrayList<ArrayList<Character>> level = new ArrayList<>();
+    private int maxSpalte = 0;
     private int posZeile;
     private int posSpalte;
     private Stack<Character> moves = new Stack<>();
@@ -22,6 +23,7 @@ public class Level implements Serializable {
         this.levelName = levelName;
         int posZ = 0;
         int posS = 0;
+
         ArrayList<Character> zeile = new ArrayList<>();
         for (int i = 0; i < levelString.length(); i++) {
             switch (levelString.charAt(i)) {
@@ -59,12 +61,23 @@ public class Level implements Serializable {
                     level.add(zeile);
                     zeile = new ArrayList<>();
                     posZ++;
+                    if (posS > maxSpalte) {
+                        maxSpalte = posS;
+                    }
                     posS = 0;
                     break;
                 default:
                     break;
             }
         }
+    }
+
+    public int getZeilenAnzahl() {
+        return level.size();
+    }
+
+    public int getMaxSpalte() {
+        return maxSpalte;
     }
 
     public Character getLevel(int zeile, int spalte) {
