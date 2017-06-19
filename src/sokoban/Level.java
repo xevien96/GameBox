@@ -92,7 +92,12 @@ public class Level extends Observable implements Serializable {
     }
 
     public void setPrevious(Level previous) {
-        this.previous = previous;
+        if (this.previous == null) {
+            this.previous = previous;
+        } else {
+            previous.previous = this.previous;
+            this.previous = previous;
+        }
     }
 
     public int getZeilenAnzahl() {
@@ -463,7 +468,11 @@ public class Level extends Observable implements Serializable {
             level = previous.level;
             posZeile = previous.posZeile;
             posSpalte = previous.posSpalte;
-            previous = null;
+            if (previous.previous != null) {
+                previous = previous.previous;
+            } else {
+                previous = null;
+            }
             setChanged();
             notifyObservers();
         }
