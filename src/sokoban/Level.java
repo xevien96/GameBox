@@ -440,7 +440,6 @@ public class Level extends Observable implements Serializable {
         notifyObservers();
     }
 
-
     public boolean checkSolved() {
         for (ArrayList<Character> ar : level) {
             for (Character c : ar) {
