@@ -5,7 +5,6 @@ import hauptmenü.DesktopFrame;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Vector;
 
 /**
@@ -13,9 +12,13 @@ import java.util.Vector;
  */
 public class sokobanStart extends JInternalFrame {
     public static Vector<Level> minicosmos;
+    public static Vector<Level> nabokosmos;
+    public static Vector<Level> yoshiomurase;
 
     static {
         minicosmos = LevelMaker.makeLevelsFromFile(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "src" + System.getProperty("file.separator") + "sokoban" + System.getProperty("file.separator") + "Levels" + System.getProperty("file.separator") + "Worlds" + System.getProperty("file.separator") + "minicosmos.txt"));
+        nabokosmos = LevelMaker.makeLevelsFromFile(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "src" + System.getProperty("file.separator") + "sokoban" + System.getProperty("file.separator") + "Levels" + System.getProperty("file.separator") + "Worlds" + System.getProperty("file.separator") + "nabokosmos.txt"));
+        yoshiomurase = LevelMaker.makeLevelsFromFile(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "src" + System.getProperty("file.separator") + "sokoban" + System.getProperty("file.separator") + "Levels" + System.getProperty("file.separator") + "Worlds" + System.getProperty("file.separator") + "yoshiomurase.txt"));
     }
 
     private DesktopFrame myDesk;
@@ -76,7 +79,7 @@ public class sokobanStart extends JInternalFrame {
         weltlabel = new JLabel("Weltauswahl:");
         world1 = new JRadioButton("Minicosmos");
         world2 = new JRadioButton("Nabokosmos");
-        world3 = new JRadioButton("Yoshimurase");
+        world3 = new JRadioButton("Yoshiomurase");
         ButtonGroup welten = new ButtonGroup();
         world1.setSelected(true);
         welten.add(world1);
