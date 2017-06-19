@@ -47,28 +47,28 @@ public class SokobanLevelFenster extends JInternalFrame {
         up.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                level.moveUp();
+                level.move('u');
             }
         });
         JButton down = new JButton("DOWN");
         down.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                level.moveDown();
+                level.move('d');
             }
         });
         JButton left = new JButton("LEFT");
         left.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                level.moveLeft();
+                level.move('l');
             }
         });
         JButton right = new JButton("RIGHT");
         right.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                level.moveRight();
+                level.move('r');
             }
         });
         p2.add(up);

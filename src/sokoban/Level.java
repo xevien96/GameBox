@@ -78,6 +78,10 @@ public class Level extends Observable implements Serializable {
         }
     }
 
+    public Level(Level previousLevel, Character move) {
+
+    }
+
     public int getZeilenAnzahl() {
         return level.size();
     }
@@ -94,7 +98,26 @@ public class Level extends Observable implements Serializable {
         level.get(zeile).set(spalte, c);
     }
 
-    public void moveUp() {
+    public void move(Character move) {
+        switch (move) {
+            case 'u':
+                moveUp();
+                break;
+            case 'd':
+                moveDown();
+                break;
+            case 'l':
+                moveLeft();
+                break;
+            case 'r':
+                moveRight();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void moveUp() {
         if (getLevel(posZeile - 1, posSpalte).equals(' ')) {    //über uns ist frei
             if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
                 setLevel(posZeile, posSpalte, ' ');
@@ -176,7 +199,7 @@ public class Level extends Observable implements Serializable {
         notifyObservers();
     }
 
-    public void moveDown() {
+    private void moveDown() {
         if (getLevel(posZeile + 1, posSpalte).equals(' ')) {    //unter uns ist frei
             if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
                 setLevel(posZeile, posSpalte, ' ');
@@ -258,7 +281,7 @@ public class Level extends Observable implements Serializable {
         notifyObservers();
     }
 
-    public void moveRight() {
+    private void moveRight() {
         if (getLevel(posZeile, posSpalte + 1).equals(' ')) {    //rechts neben uns ist frei
             if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
                 setLevel(posZeile, posSpalte, ' ');
@@ -340,7 +363,7 @@ public class Level extends Observable implements Serializable {
         notifyObservers();
     }
 
-    public void moveLeft() {
+    private void moveLeft() {
         if (getLevel(posZeile, posSpalte - 1).equals(' ')) {    //links neben uns ist frei
             if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
                 setLevel(posZeile, posSpalte, ' ');
