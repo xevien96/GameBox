@@ -16,6 +16,8 @@ public class Level extends Observable implements Serializable {
     private int posZeile;
     private int posSpalte;
 
+    private Level previous;
+
     public Level(String worldName, int levelNr, String levelName, String levelString) {
         this.worldName = worldName;
         this.levelNr = levelNr;
@@ -87,6 +89,10 @@ public class Level extends Observable implements Serializable {
         maxSpalte = previous.maxSpalte;
         posZeile = previous.posZeile;
         posSpalte = previous.posSpalte;
+    }
+
+    public void setPrevious(Level previous) {
+        this.previous = previous;
     }
 
     public int getZeilenAnzahl() {
@@ -450,6 +456,17 @@ public class Level extends Observable implements Serializable {
         }
         setChanged();
         notifyObservers();
+    }
+
+    public void undo() {
+        if (previous != null) {
+            level = previous.level;
+            posZeile = previous.posZeile;
+            posSpalte = previous.posSpalte;
+            previous = null;
+            setChanged();
+            notifyObservers();
+        }
     }
 
     public boolean checkSolved() {

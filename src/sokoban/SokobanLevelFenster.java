@@ -47,6 +47,7 @@ public class SokobanLevelFenster extends JInternalFrame {
         up.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                level.setPrevious(new Level(level));
                 level.move('u');
             }
         });
@@ -54,6 +55,7 @@ public class SokobanLevelFenster extends JInternalFrame {
         down.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                level.setPrevious(new Level(level));
                 level.move('d');
             }
         });
@@ -61,6 +63,7 @@ public class SokobanLevelFenster extends JInternalFrame {
         left.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                level.setPrevious(new Level(level));
                 level.move('l');
             }
         });
@@ -68,13 +71,22 @@ public class SokobanLevelFenster extends JInternalFrame {
         right.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                level.setPrevious(new Level(level));
                 level.move('r');
+            }
+        });
+        JButton undo = new JButton("UNDO");
+        undo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                level.undo();
             }
         });
         p2.add(up);
         p2.add(down);
         p2.add(left);
         p2.add(right);
+        p2.add(undo);
         cp.add(p2);
     }
 }
