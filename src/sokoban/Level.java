@@ -16,7 +16,6 @@ public class Level extends Observable implements Serializable {
     private int maxSpalte = 0;
     private int posZeile;
     private int posSpalte;
-    private Stack<Character> moves = new Stack<>();
 
     public Level(String worldName, int levelNr, String levelName, String levelString) {
         this.worldName = worldName;
@@ -79,10 +78,6 @@ public class Level extends Observable implements Serializable {
         }
     }
 
-    public Stack<Character> getMoves() {
-        return moves;
-    }
-
     public int getZeilenAnzahl() {
         return level.size();
     }
@@ -104,12 +99,10 @@ public class Level extends Observable implements Serializable {
             if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
                 setLevel(posZeile, posSpalte, ' ');
                 posZeile--;
-                moves.push('u');
                 setLevel(posZeile, posSpalte, '@');
             } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
                 setLevel(posZeile, posSpalte, '.');
                 posZeile--;
-                moves.push('u');
                 setLevel(posZeile, posSpalte, '@');
             }
 
@@ -117,12 +110,10 @@ public class Level extends Observable implements Serializable {
             if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
                 setLevel(posZeile, posSpalte, ' ');
                 posZeile--;
-                moves.push('u');
                 setLevel(posZeile, posSpalte, '+');
             } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
                 setLevel(posZeile, posSpalte, '.');
                 posZeile--;
-                moves.push('u');
                 setLevel(posZeile, posSpalte, '+');
             }
 
@@ -131,13 +122,11 @@ public class Level extends Observable implements Serializable {
                 if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
                     setLevel(posZeile, posSpalte, ' ');
                     posZeile--;
-                    moves.push('u');
                     setLevel(posZeile, posSpalte, '@');
                     setLevel(posZeile - 1, posSpalte, '$');
                 } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
                     setLevel(posZeile, posSpalte, '.');
                     posZeile--;
-                    moves.push('u');
                     setLevel(posZeile, posSpalte, '@');
                     setLevel(posZeile - 1, posSpalte, '$');
                 }
@@ -146,13 +135,11 @@ public class Level extends Observable implements Serializable {
                 if (getLevel(posZeile, posSpalte).equals('@')) {  //wir befinden uns auf einem leeren Feld
                     setLevel(posZeile, posSpalte, ' ');
                     posZeile--;
-                    moves.push('u');
                     setLevel(posZeile, posSpalte, '@');
                     setLevel(posZeile - 1, posSpalte, '*');
                 } else if (getLevel(posZeile, posSpalte).equals('+')) {  //wir befinden uns auf einem Ziel
                     setLevel(posZeile, posSpalte, '.');
                     posZeile--;
-                    moves.push('u');
                     setLevel(posZeile, posSpalte, '@');
                     setLevel(posZeile - 1, posSpalte, '*');
                 }
@@ -162,13 +149,11 @@ public class Level extends Observable implements Serializable {
                 if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
                     setLevel(posZeile, posSpalte, ' ');
                     posZeile--;
-                    moves.push('u');
                     setLevel(posZeile, posSpalte, '+');
                     setLevel(posZeile - 1, posSpalte, '$');
                 } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
                     setLevel(posZeile, posSpalte, '.');
                     posZeile--;
-                    moves.push('u');
                     setLevel(posZeile, posSpalte, '+');
                     setLevel(posZeile - 1, posSpalte, '$');
                 }
@@ -177,13 +162,11 @@ public class Level extends Observable implements Serializable {
                 if (getLevel(posZeile, posSpalte).equals('@')) {  //wir befinden uns auf einem leeren Feld
                     setLevel(posZeile, posSpalte, ' ');
                     posZeile--;
-                    moves.push('u');
                     setLevel(posZeile, posSpalte, '+');
                     setLevel(posZeile - 1, posSpalte, '*');
                 } else if (getLevel(posZeile, posSpalte).equals('+')) {  //wir befinden uns auf einem Ziel
                     setLevel(posZeile, posSpalte, '.');
                     posZeile--;
-                    moves.push('u');
                     setLevel(posZeile, posSpalte, '+');
                     setLevel(posZeile - 1, posSpalte, '*');
                 }
@@ -198,12 +181,10 @@ public class Level extends Observable implements Serializable {
             if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
                 setLevel(posZeile, posSpalte, ' ');
                 posZeile++;
-                moves.push('d');
                 setLevel(posZeile, posSpalte, '@');
             } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
                 setLevel(posZeile, posSpalte, '.');
                 posZeile++;
-                moves.push('d');
                 setLevel(posZeile, posSpalte, '@');
             }
 
@@ -211,12 +192,10 @@ public class Level extends Observable implements Serializable {
             if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
                 setLevel(posZeile, posSpalte, ' ');
                 posZeile++;
-                moves.push('d');
                 setLevel(posZeile, posSpalte, '+');
             } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
                 setLevel(posZeile, posSpalte, '.');
                 posZeile++;
-                moves.push('d');
                 setLevel(posZeile, posSpalte, '+');
             }
 
@@ -225,13 +204,11 @@ public class Level extends Observable implements Serializable {
                 if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
                     setLevel(posZeile, posSpalte, ' ');
                     posZeile++;
-                    moves.push('d');
                     setLevel(posZeile, posSpalte, '@');
                     setLevel(posZeile + 1, posSpalte, '$');
                 } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
                     setLevel(posZeile, posSpalte, '.');
                     posZeile++;
-                    moves.push('d');
                     setLevel(posZeile, posSpalte, '@');
                     setLevel(posZeile + 1, posSpalte, '$');
                 }
@@ -240,13 +217,11 @@ public class Level extends Observable implements Serializable {
                 if (getLevel(posZeile, posSpalte).equals('@')) {  //wir befinden uns auf einem leeren Feld
                     setLevel(posZeile, posSpalte, ' ');
                     posZeile++;
-                    moves.push('d');
                     setLevel(posZeile, posSpalte, '@');
                     setLevel(posZeile + 1, posSpalte, '*');
                 } else if (getLevel(posZeile, posSpalte).equals('+')) {  //wir befinden uns auf einem Ziel
                     setLevel(posZeile, posSpalte, '.');
                     posZeile++;
-                    moves.push('d');
                     setLevel(posZeile, posSpalte, '@');
                     setLevel(posZeile + 1, posSpalte, '*');
                 }
@@ -256,13 +231,11 @@ public class Level extends Observable implements Serializable {
                 if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
                     setLevel(posZeile, posSpalte, ' ');
                     posZeile++;
-                    moves.push('d');
                     setLevel(posZeile, posSpalte, '+');
                     setLevel(posZeile + 1, posSpalte, '$');
                 } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
                     setLevel(posZeile, posSpalte, '.');
                     posZeile++;
-                    moves.push('d');
                     setLevel(posZeile, posSpalte, '+');
                     setLevel(posZeile + 1, posSpalte, '$');
                 }
@@ -271,13 +244,11 @@ public class Level extends Observable implements Serializable {
                 if (getLevel(posZeile, posSpalte).equals('@')) {  //wir befinden uns auf einem leeren Feld
                     setLevel(posZeile, posSpalte, ' ');
                     posZeile++;
-                    moves.push('d');
                     setLevel(posZeile, posSpalte, '+');
                     setLevel(posZeile + 1, posSpalte, '*');
                 } else if (getLevel(posZeile, posSpalte).equals('+')) {  //wir befinden uns auf einem Ziel
                     setLevel(posZeile, posSpalte, '.');
                     posZeile++;
-                    moves.push('d');
                     setLevel(posZeile, posSpalte, '+');
                     setLevel(posZeile + 1, posSpalte, '*');
                 }
@@ -292,12 +263,10 @@ public class Level extends Observable implements Serializable {
             if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
                 setLevel(posZeile, posSpalte, ' ');
                 posSpalte++;
-                moves.push('r');
                 setLevel(posZeile, posSpalte, '@');
             } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
                 setLevel(posZeile, posSpalte, '.');
                 posSpalte++;
-                moves.push('r');
                 setLevel(posZeile, posSpalte, '@');
             }
 
@@ -305,12 +274,10 @@ public class Level extends Observable implements Serializable {
             if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
                 setLevel(posZeile, posSpalte, ' ');
                 posSpalte++;
-                moves.push('r');
                 setLevel(posZeile, posSpalte, '+');
             } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
                 setLevel(posZeile, posSpalte, '.');
                 posSpalte++;
-                moves.push('r');
                 setLevel(posZeile, posSpalte, '+');
             }
 
@@ -319,13 +286,11 @@ public class Level extends Observable implements Serializable {
                 if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
                     setLevel(posZeile, posSpalte, ' ');
                     posSpalte++;
-                    moves.push('r');
                     setLevel(posZeile, posSpalte, '@');
                     setLevel(posZeile, posSpalte + 1, '$');
                 } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
                     setLevel(posZeile, posSpalte, '.');
                     posSpalte++;
-                    moves.push('r');
                     setLevel(posZeile, posSpalte, '@');
                     setLevel(posZeile, posSpalte + 1, '$');
                 }
@@ -334,13 +299,11 @@ public class Level extends Observable implements Serializable {
                 if (getLevel(posZeile, posSpalte).equals('@')) {  //wir befinden uns auf einem leeren Feld
                     setLevel(posZeile, posSpalte, ' ');
                     posSpalte++;
-                    moves.push('r');
                     setLevel(posZeile, posSpalte, '@');
                     setLevel(posZeile, posSpalte + 1, '*');
                 } else if (getLevel(posZeile, posSpalte).equals('+')) {  //wir befinden uns auf einem Ziel
                     setLevel(posZeile, posSpalte, '.');
                     posSpalte++;
-                    moves.push('r');
                     setLevel(posZeile, posSpalte, '@');
                     setLevel(posZeile, posSpalte + 1, '*');
                 }
@@ -350,13 +313,11 @@ public class Level extends Observable implements Serializable {
                 if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
                     setLevel(posZeile, posSpalte, ' ');
                     posSpalte++;
-                    moves.push('r');
                     setLevel(posZeile, posSpalte, '+');
                     setLevel(posZeile, posSpalte + 1, '$');
                 } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
                     setLevel(posZeile, posSpalte, '.');
                     posSpalte++;
-                    moves.push('r');
                     setLevel(posZeile, posSpalte, '+');
                     setLevel(posZeile, posSpalte + 1, '$');
                 }
@@ -365,13 +326,11 @@ public class Level extends Observable implements Serializable {
                 if (getLevel(posZeile, posSpalte).equals('@')) {  //wir befinden uns auf einem leeren Feld
                     setLevel(posZeile, posSpalte, ' ');
                     posSpalte++;
-                    moves.push('r');
                     setLevel(posZeile, posSpalte, '+');
                     setLevel(posZeile, posSpalte + 1, '*');
                 } else if (getLevel(posZeile, posSpalte).equals('+')) {  //wir befinden uns auf einem Ziel
                     setLevel(posZeile, posSpalte, '.');
                     posSpalte++;
-                    moves.push('r');
                     setLevel(posZeile, posSpalte, '+');
                     setLevel(posZeile + 1, posSpalte, '*');
                 }
@@ -386,12 +345,10 @@ public class Level extends Observable implements Serializable {
             if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
                 setLevel(posZeile, posSpalte, ' ');
                 posSpalte--;
-                moves.push('l');
                 setLevel(posZeile, posSpalte, '@');
             } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
                 setLevel(posZeile, posSpalte, '.');
                 posSpalte--;
-                moves.push('l');
                 setLevel(posZeile, posSpalte, '@');
             }
 
@@ -399,12 +356,10 @@ public class Level extends Observable implements Serializable {
             if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
                 setLevel(posZeile, posSpalte, ' ');
                 posSpalte--;
-                moves.push('l');
                 setLevel(posZeile, posSpalte, '+');
             } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
                 setLevel(posZeile, posSpalte, '.');
                 posSpalte--;
-                moves.push('l');
                 setLevel(posZeile, posSpalte, '+');
             }
 
@@ -413,13 +368,11 @@ public class Level extends Observable implements Serializable {
                 if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
                     setLevel(posZeile, posSpalte, ' ');
                     posSpalte--;
-                    moves.push('l');
                     setLevel(posZeile, posSpalte, '@');
                     setLevel(posZeile, posSpalte - 1, '$');
                 } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
                     setLevel(posZeile, posSpalte, '.');
                     posSpalte--;
-                    moves.push('l');
                     setLevel(posZeile, posSpalte, '@');
                     setLevel(posZeile, posSpalte - 1, '$');
                 }
@@ -428,13 +381,11 @@ public class Level extends Observable implements Serializable {
                 if (getLevel(posZeile, posSpalte).equals('@')) {  //wir befinden uns auf einem leeren Feld
                     setLevel(posZeile, posSpalte, ' ');
                     posSpalte--;
-                    moves.push('l');
                     setLevel(posZeile, posSpalte, '@');
                     setLevel(posZeile, posSpalte - 1, '*');
                 } else if (getLevel(posZeile, posSpalte).equals('+')) {  //wir befinden uns auf einem Ziel
                     setLevel(posZeile, posSpalte, '.');
                     posSpalte--;
-                    moves.push('l');
                     setLevel(posZeile, posSpalte, '@');
                     setLevel(posZeile, posSpalte - 1, '*');
                 }
@@ -444,13 +395,11 @@ public class Level extends Observable implements Serializable {
                 if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
                     setLevel(posZeile, posSpalte, ' ');
                     posSpalte--;
-                    moves.push('l');
                     setLevel(posZeile, posSpalte, '+');
                     setLevel(posZeile, posSpalte - 1, '$');
                 } else if (getLevel(posZeile, posSpalte).equals('+')) { //wir befinden uns auf einem Ziel
                     setLevel(posZeile, posSpalte, '.');
                     posSpalte--;
-                    moves.push('l');
                     setLevel(posZeile, posSpalte, '+');
                     setLevel(posZeile, posSpalte - 1, '$');
                 }
@@ -459,13 +408,11 @@ public class Level extends Observable implements Serializable {
                 if (getLevel(posZeile, posSpalte).equals('@')) {  //wir befinden uns auf einem leeren Feld
                     setLevel(posZeile, posSpalte, ' ');
                     posSpalte--;
-                    moves.push('l');
                     setLevel(posZeile, posSpalte, '+');
                     setLevel(posZeile, posSpalte - 1, '*');
                 } else if (getLevel(posZeile, posSpalte).equals('+')) {  //wir befinden uns auf einem Ziel
                     setLevel(posZeile, posSpalte, '.');
                     posSpalte--;
-                    moves.push('l');
                     setLevel(posZeile, posSpalte, '+');
                     setLevel(posZeile - 1, posSpalte, '*');
                 }
@@ -475,48 +422,6 @@ public class Level extends Observable implements Serializable {
         notifyObservers();
     }
 
-    public void undo() {
-        if (moves.size() > 0) {
-            switch (moves.peek()) {
-                case 'u':
-                    undoUp();
-                    moves.pop();
-                    break;
-                case 'd':
-                    undoDown();
-                    moves.pop();
-                    break;
-                case 'l':
-                    undoLeft();
-                    moves.pop();
-                    break;
-                case 'r':
-                    undoRight();
-                    moves.pop();
-                    break;
-                default:
-                    break;
-            }
-            setChanged();
-            notifyObservers();
-        }
-    }
-
-    public void undoUp() {
-
-    }
-
-    public void undoDown(){
-
-    }
-
-    public void undoLeft(){
-
-    }
-
-    public void undoRight(){
-
-    }
 
     public boolean checkSolved() {
         for (ArrayList<Character> ar : level) {
