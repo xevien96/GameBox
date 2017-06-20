@@ -49,6 +49,7 @@ public class SokobanLevelFenster extends JInternalFrame {
             public void actionPerformed(ActionEvent e) {
                 level.setPrevious(new Level(level));
                 level.move('u');
+                levelGelöst();
             }
         });
         JButton down = new JButton("DOWN");
@@ -57,6 +58,7 @@ public class SokobanLevelFenster extends JInternalFrame {
             public void actionPerformed(ActionEvent e) {
                 level.setPrevious(new Level(level));
                 level.move('d');
+                levelGelöst();
             }
         });
         JButton left = new JButton("LEFT");
@@ -65,6 +67,7 @@ public class SokobanLevelFenster extends JInternalFrame {
             public void actionPerformed(ActionEvent e) {
                 level.setPrevious(new Level(level));
                 level.move('l');
+                levelGelöst();
             }
         });
         JButton right = new JButton("RIGHT");
@@ -73,6 +76,7 @@ public class SokobanLevelFenster extends JInternalFrame {
             public void actionPerformed(ActionEvent e) {
                 level.setPrevious(new Level(level));
                 level.move('r');
+                levelGelöst();
             }
         });
         JButton undo = new JButton("UNDO");
@@ -88,5 +92,17 @@ public class SokobanLevelFenster extends JInternalFrame {
         p2.add(right);
         p2.add(undo);
         cp.add(p2);
+    }
+
+    private void levelGelöst() {
+        if (level.isSolved()) {
+            JOptionPane.showInternalMessageDialog(this, "Level gelöst", level.toString(), JOptionPane.INFORMATION_MESSAGE);
+            if (level.getLevelNr() >= SokobanStart.getWorldVector(level.getWorldName()).size()) {
+                dispose();
+            } else {
+                myDesk.addChild(new SokobanLevelFenster(myDesk, SokobanStart.getWorldVector(level.getWorldName()).get(level.getLevelNr())), 30, 30);
+                dispose();
+            }
+        }
     }
 }

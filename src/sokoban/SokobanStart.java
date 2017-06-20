@@ -11,9 +11,9 @@ import java.util.Vector;
  * @author Johann Helbig, Marc Brandt, Albert Renz
  */
 public class SokobanStart extends JInternalFrame {
-    public static Vector<Level> minicosmos;
-    public static Vector<Level> nabokosmos;
-    public static Vector<Level> yoshiomurase;
+    private static Vector<Level> minicosmos;
+    private static Vector<Level> nabokosmos;
+    private static Vector<Level> yoshiomurase;
 
     static {
         minicosmos = LevelMaker.makeLevelsFromFile(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "src" + System.getProperty("file.separator") + "sokoban" + System.getProperty("file.separator") + "Levels" + System.getProperty("file.separator") + "Worlds" + System.getProperty("file.separator") + "minicosmos.txt"));
@@ -46,6 +46,19 @@ public class SokobanStart extends JInternalFrame {
         initp1();
         initp2();
         initp3();
+    }
+
+    public static Vector<Level> getWorldVector(String worldname) {
+        switch (worldname) {
+            case "minicosmos":
+                return minicosmos;
+            case "nabokosmos":
+                return nabokosmos;
+            case "yoshiomurase":
+                return yoshiomurase;
+            default:
+                return null;
+        }
     }
 
     /**
@@ -81,10 +94,30 @@ public class SokobanStart extends JInternalFrame {
         world2 = new JRadioButton("Nabokosmos");
         world3 = new JRadioButton("Yoshiomurase");
         ButtonGroup welten = new ButtonGroup();
-        world1.setSelected(true);
         welten.add(world1);
         welten.add(world2);
         welten.add(world3);
+
+
+        world1.addActionListener(e -> {
+            level.removeAllItems();
+            for (Level lvl : minicosmos) {
+                level.addItem(lvl);
+            }
+        }); // Level in Combobox hinzufügen
+        world2.addActionListener(e -> {
+            level.removeAllItems();
+            for (Level lvl : nabokosmos) {
+                level.addItem(lvl);
+            }
+        }); // Level in Combobox hinzufügen
+        world3.addActionListener(e -> {
+            level.removeAllItems();
+            for (Level lvl : yoshiomurase) {
+                level.addItem(lvl);
+            }
+        }); // Level in Combobox hinzufügen
+
 
         p20.add(weltlabel);
         p20.add(world1);
@@ -94,7 +127,7 @@ public class SokobanStart extends JInternalFrame {
         JPanel p21 = new JPanel(); // Panel für Checkbox der Levelauswahl
         p21.setLayout(new BoxLayout(p21, BoxLayout.Y_AXIS));
         levellabel = new JLabel("Levelauswahl:");
-        level = new JComboBox(minicosmos);
+        level = new JComboBox();
         level.setMaximumSize(new Dimension(200, 35));
 
 
@@ -121,7 +154,7 @@ public class SokobanStart extends JInternalFrame {
         exitButton.addActionListener(e -> dispose());
 
         startGame = new JButton("Neues Spiel"); //Neues Spiel
-        startGame.addActionListener(e -> myDesk.addChild(new SokobanLevelFenster(myDesk, (Level)level.getSelectedItem()),30,30));
+        startGame.addActionListener(e -> myDesk.addChild(new SokobanLevelFenster(myDesk, (Level) level.getSelectedItem()), 30, 30));
 
         loadButton = new JButton("Spiel laden"); //Spiel laden aus Textdatei
         //loadButton.addActionListener(e -> ());

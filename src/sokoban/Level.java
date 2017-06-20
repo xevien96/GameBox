@@ -15,6 +15,7 @@ public class Level extends Observable implements Serializable {
     private int maxSpalte = 0;
     private int posZeile;
     private int posSpalte;
+    private boolean solved = false;
 
     private Level previous;
 
@@ -26,7 +27,7 @@ public class Level extends Observable implements Serializable {
         int posS = 0;
 
         ArrayList<Character> zeile = new ArrayList<>();
-        for (int i = 0; i < levelString.length(); i++) {
+        for (int i = 0; i < levelString.length(); i++) {    //Level in einen String einlesen
             switch (levelString.charAt(i)) {
                 case ' ':
                     zeile.add(' ');
@@ -100,6 +101,14 @@ public class Level extends Observable implements Serializable {
         }
     }
 
+    public int getLevelNr() {
+        return levelNr;
+    }
+
+    public String getWorldName() {
+        return worldName;
+    }
+
     public int getZeilenAnzahl() {
         return level.size();
     }
@@ -120,20 +129,24 @@ public class Level extends Observable implements Serializable {
         switch (move) {
             case 'u':
                 moveUp();
+                checkSolved();
                 break;
             case 'd':
                 moveDown();
+                checkSolved();
                 break;
             case 'l':
                 moveLeft();
+                checkSolved();
                 break;
             case 'r':
                 moveRight();
+                checkSolved();
                 break;
             default:
                 break;
         }
-    }
+    }   //Switch case für move
 
     private void moveUp() {
         if (getLevel(posZeile - 1, posSpalte).equals(' ')) {    //über uns ist frei
@@ -478,15 +491,20 @@ public class Level extends Observable implements Serializable {
         }
     }
 
-    public boolean checkSolved() {
+    public void checkSolved() {
+        int counter = 0;
         for (ArrayList<Character> ar : level) {
             for (Character c : ar) {
                 if (c.equals('.') || c.equals('+')) {
-                    return false;
+                    counter++;
                 }
             }
         }
-        return true;
+        if (counter < 1) solved = true;
+    }
+
+    public boolean isSolved() {
+        return solved;
     }
 
     public String toString() {
