@@ -10,6 +10,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * @author Johann Helbig, Marc Brandt, Albert Renz
+ */
 public class SokobanLevelFenster extends JInternalFrame {
     private DesktopFrame myDesk;
     private Level level;
@@ -22,7 +25,7 @@ public class SokobanLevelFenster extends JInternalFrame {
         super(lvl.toString(), true, true, true, true);
         myDesk = df;
         level = new Level(lvl);
-        setSize(400, 400);
+        setSize(500, 500);
         cp.setLayout(new BoxLayout(cp, BoxLayout.Y_AXIS));
         initp1();
         initp2();
@@ -43,6 +46,7 @@ public class SokobanLevelFenster extends JInternalFrame {
 
     private void initp2(){
         p2 = new JPanel();
+        p2.setLayout(new GridLayout(1, 2));
         JButton up = new JButton("UP");
         up.addActionListener(new ActionListener() {
             @Override
@@ -86,11 +90,45 @@ public class SokobanLevelFenster extends JInternalFrame {
                 level.undo();
             }
         });
-        p2.add(up);
-        p2.add(down);
-        p2.add(left);
-        p2.add(right);
-        p2.add(undo);
+        //TODO speichern funktion
+        JButton speichern = new JButton("Save game");
+        speichern.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //level.speichern();
+            }
+        });
+        speichern.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JButton beenden = new JButton("End game");
+        beenden.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+        beenden.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JPanel p20 = new JPanel(new GridLayout(3, 3));
+        p20.add(new JButton());
+        p20.add(up);
+        p20.add(new JButton());
+        p20.add(left);
+        p20.add(undo);
+        p20.add(right);
+        p20.add(new JButton());
+        p20.add(down);
+        p20.add(new JButton());
+
+        JPanel p21 = new JPanel();
+        p21.setLayout(new BoxLayout(p21, BoxLayout.Y_AXIS));
+        p21.add(Box.createVerticalGlue());
+        p21.add(speichern);
+        p21.add(Box.createVerticalGlue());
+        p21.add(beenden);
+        p21.add(Box.createVerticalGlue());
+
+        p2.add(p20);
+        p2.add(p21);
         cp.add(p2);
     }
 

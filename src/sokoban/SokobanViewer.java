@@ -6,7 +6,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Created by Johann on 17/06/19.
+ * @author Johann Helbig, Marc Brandt, Albert Renz
  */
 public class SokobanViewer extends JPanel implements Observer {
     private JButton[][] spielfeld;
