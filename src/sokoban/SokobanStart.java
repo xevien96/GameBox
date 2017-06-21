@@ -5,6 +5,9 @@ import hauptmenü.DesktopFrame;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Vector;
 
 /**
@@ -21,6 +24,7 @@ public class SokobanStart extends JInternalFrame {
         yoshiomurase = LevelMaker.makeLevelsFromFile(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "src" + System.getProperty("file.separator") + "sokoban" + System.getProperty("file.separator") + "Levels" + System.getProperty("file.separator") + "Worlds" + System.getProperty("file.separator") + "yoshiomurase.txt"));
     }
 
+    private final JFileChooser fc = new JFileChooser(System.getProperty("user.dir") + System.getProperty("file.separator") + "src" + System.getProperty("file.separator") + "sokoban" + System.getProperty("file.separator") + "Levels" + System.getProperty("file.separator") + "Saved Games");
     private DesktopFrame myDesk;
 
     private JLabel ueberschrift;
@@ -157,7 +161,7 @@ public class SokobanStart extends JInternalFrame {
         startGame.addActionListener(e -> myDesk.addChild(new SokobanLevelFenster(myDesk, (Level) level.getSelectedItem()), 30, 30));
 
         loadButton = new JButton("Spiel laden"); //Spiel laden aus Textdatei
-        //loadButton.addActionListener(e -> ());
+        loadButton.addActionListener(e -> spielLaden());
 
         p3.add(startGame);
         p3.add(Box.createHorizontalGlue()); //Abstand zwischen buttons
@@ -165,5 +169,22 @@ public class SokobanStart extends JInternalFrame {
         p3.add(Box.createHorizontalGlue()); //Abstand zwischen buttons
         p3.add(exitButton);
         cp.add(p3, BorderLayout.PAGE_END);
+    }
+
+    private void spielLaden() {
+        int returnVal = fc.showSaveDialog(this);
+        if (returnVal == fc.APPROVE_OPTION) {
+            File gameFile = fc.getSelectedFile();
+            try {
+                FileInputStream fileInputStream = new FileInputStream(gameFile);
+                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+                Level lvl = (Level) objectInputStream.readObject();
+                myDesk.addChild(new SokobanLevelFenster(myDesk, lvl), 30, 30);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

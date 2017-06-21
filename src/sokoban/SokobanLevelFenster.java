@@ -9,18 +9,21 @@ import javax.swing.event.InternalFrameEvent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 /**
  * @author Johann Helbig, Marc Brandt, Albert Renz
  */
 public class SokobanLevelFenster extends JInternalFrame {
+    private final JFileChooser fc = new JFileChooser(System.getProperty("user.dir") + System.getProperty("file.separator") + "src" + System.getProperty("file.separator") + "sokoban" + System.getProperty("file.separator") + "Levels" + System.getProperty("file.separator") + "Saved Games");
     private DesktopFrame myDesk;
     private Level level;
-
     private Container cp = getContentPane();
     private SokobanViewer p1;
     private JPanel p2;
-
     private Action moveUp = new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -107,7 +110,7 @@ public class SokobanLevelFenster extends JInternalFrame {
         cp.add(p1);
     }
 
-    private void initp2(){
+    private void initp2() {
         p2 = new JPanel();
         p2.setLayout(new GridLayout(1, 2));
         JButton up = new JButton("UP");
@@ -158,7 +161,7 @@ public class SokobanLevelFenster extends JInternalFrame {
         speichern.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //level.speichern();
+                speichern();
             }
         });
         speichern.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -193,6 +196,22 @@ public class SokobanLevelFenster extends JInternalFrame {
         p2.add(p20);
         p2.add(p21);
         cp.add(p2);
+    }
+
+    private void speichern() {
+        int returnVal = fc.showSaveDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File gameFile = new File(fc.getSelectedFile() + ".ser");
+            try {
+                FileOutputStream fileOutputStream = new FileOutputStream(gameFile);
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+                objectOutputStream.writeObject(level);
+                objectOutputStream.close();
+                fileOutputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void levelGelöst() {
