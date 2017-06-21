@@ -21,6 +21,49 @@ public class SokobanLevelFenster extends JInternalFrame {
     private SokobanViewer p1;
     private JPanel p2;
 
+    private Action moveUp = new AbstractAction() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            level.setPrevious(new Level(level));
+            level.move('u');
+            levelGelöst();
+        }
+    };
+
+    private Action moveDown = new AbstractAction() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            level.setPrevious(new Level(level));
+            level.move('d');
+            levelGelöst();
+        }
+    };
+
+    private Action moveLeft = new AbstractAction() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            level.setPrevious(new Level(level));
+            level.move('l');
+            levelGelöst();
+        }
+    };
+
+    private Action moveRight = new AbstractAction() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            level.setPrevious(new Level(level));
+            level.move('r');
+            levelGelöst();
+        }
+    };
+
+    private Action undoAction = new AbstractAction() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            level.undo();
+        }
+    };
+
     public SokobanLevelFenster(DesktopFrame df, Level lvl) {
         super(lvl.toString(), true, true, true, true);
         myDesk = df;
@@ -30,6 +73,8 @@ public class SokobanLevelFenster extends JInternalFrame {
         initp1();
         initp2();
 
+        initControls();
+
         addInternalFrameListener(new InternalFrameAdapter() {
             @Override
             public void internalFrameClosing(InternalFrameEvent e) {
@@ -37,6 +82,24 @@ public class SokobanLevelFenster extends JInternalFrame {
                 level.deleteObserver(p1);
             }
         });
+    }
+
+    private void initControls() {
+        getInputMap(WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("UP"), "moveUp");
+        getInputMap(WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke('w'), "moveUp");
+        getActionMap().put("moveUp", moveUp);
+        getInputMap(WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("DOWN"), "moveDown");
+        getInputMap(WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke('s'), "moveDown");
+        getActionMap().put("moveDown", moveDown);
+        getInputMap(WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("LEFT"), "moveLeft");
+        getInputMap(WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke('a'), "moveLeft");
+        getActionMap().put("moveLeft", moveLeft);
+        getInputMap(WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("RIGHT"), "moveRight");
+        getInputMap(WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke('d'), "moveRight");
+        getActionMap().put("moveRight", moveRight);
+        getInputMap(WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("BACK_SPACE"), "undo");
+        getInputMap(WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke('u'), "undo");
+        getActionMap().put("undo", undoAction);
     }
 
     private void initp1() {
