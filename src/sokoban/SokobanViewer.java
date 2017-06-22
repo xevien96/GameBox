@@ -25,7 +25,6 @@ public class SokobanViewer extends JPanel implements Observer {
                 add(spielfeld[i][j]);
             }
         }
-
     }
 
     public void paintComponent(Graphics g) {
