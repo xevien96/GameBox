@@ -35,24 +35,30 @@ public class SokobanViewer extends JPanel implements Observer {
                 switch (level.getLevel(i, j)) {
                     case ' ':
                         spielfeld[i][j].setBackground(freeColor);
+                        spielfeld[i][j].setText("");
                         break;
                     case '#':
                         spielfeld[i][j].setBackground(wallColor);
                         break;
                     case '@':
                         spielfeld[i][j].setBackground(playerColor);
+                        spielfeld[i][j].setText("Du");
                         break;
                     case '$':
                         spielfeld[i][j].setBackground(boxColor);
+                        spielfeld[i][j].setText("$$$");
                         break;
                     case '.':
                         spielfeld[i][j].setBackground(targetColor);
+                        spielfeld[i][j].setText("Ziel");
                         break;
                     case '*':
                         spielfeld[i][j].setBackground(boxOnTargetColor);
+                        spielfeld[i][j].setText("$*$");
                         break;
                     case '+':
                         spielfeld[i][j].setBackground(playerOnTargetColor);
+                        spielfeld[i][j].setText("Du");
                         break;
                     default:
                         break;
