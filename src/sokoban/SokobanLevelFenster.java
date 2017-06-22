@@ -175,15 +175,15 @@ public class SokobanLevelFenster extends JInternalFrame {
         beenden.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JPanel p20 = new JPanel(new GridLayout(3, 3));
-        p20.add(new JButton());
+        p20.add(new JLabel());
         p20.add(up);
-        p20.add(new JButton());
+        p20.add(new JLabel());
         p20.add(left);
         p20.add(undo);
         p20.add(right);
-        p20.add(new JButton());
+        p20.add(new JLabel());
         p20.add(down);
-        p20.add(new JButton());
+        p20.add(new JLabel());
 
         JPanel p21 = new JPanel();
         p21.setLayout(new BoxLayout(p21, BoxLayout.Y_AXIS));
