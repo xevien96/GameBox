@@ -160,7 +160,7 @@ public class GameOfLifeViewer extends JPanel implements Observer, ActionListener
 
     public void update(Observable o, Object arg) {
         if (o == myGame) repaint();
-    }
+    } //update für den Observer
 
     /**
      * Zelle die hinter dem Button steht in ihrem Zustand ändern

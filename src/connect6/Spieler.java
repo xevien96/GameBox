@@ -7,7 +7,7 @@ import java.awt.*;
  */
 
 /**
- * Die Klasse Spieler setzt für einen neun Spieler einen Namen und eine Farbe fest.
+ * Die Klasse Spieler setzt für einen neuen Spieler einen Namen und eine Farbe fest.
  */
 public class Spieler {
     private String name;

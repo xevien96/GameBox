@@ -16,7 +16,7 @@ public class Regenbogen extends JInternalFrame implements ActionListener {
     DesktopFrame myDesk;
 
     /**
-     * Konstruktor für das sokobanStart
+     * Konstruktor für das Regenbogen "Hauptfenster"
      */
     public Regenbogen(DesktopFrame df) {
         super("regenbogen", true, true, true, true);

@@ -24,6 +24,10 @@ public class SokobanLevelFenster extends JInternalFrame {
     private Container cp = getContentPane();
     private SokobanViewer p1;
     private JPanel p2;
+
+
+    //moves und undo Actions
+    //moveUp
     private Action moveUp = new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -33,6 +37,7 @@ public class SokobanLevelFenster extends JInternalFrame {
         }
     };
 
+    //moveDown
     private Action moveDown = new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -42,6 +47,7 @@ public class SokobanLevelFenster extends JInternalFrame {
         }
     };
 
+    //moveLeft
     private Action moveLeft = new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -51,6 +57,7 @@ public class SokobanLevelFenster extends JInternalFrame {
         }
     };
 
+    //moveRight
     private Action moveRight = new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -60,6 +67,7 @@ public class SokobanLevelFenster extends JInternalFrame {
         }
     };
 
+    //undo
     private Action undoAction = new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -67,6 +75,13 @@ public class SokobanLevelFenster extends JInternalFrame {
         }
     };
 
+
+    /**
+     * Konstruktor für ein SokobanLevelFenster
+     *
+     * @param df  DesktopFrame in welchem das SokobanLevelFenset läuft
+     * @param lvl Ausgewähltes Level
+     */
     public SokobanLevelFenster(DesktopFrame df, Level lvl) {
         super(lvl.toString(), true, true, true, true);
         myDesk = df;
@@ -87,6 +102,9 @@ public class SokobanLevelFenster extends JInternalFrame {
         });
     }
 
+    /**
+     * Methode zum initialisieren der einzelnen Tasten der Tastatur zur Steuerung
+     */
     private void initControls() {
         getInputMap(WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("UP"), "moveUp");
         getInputMap(WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke('w'), "moveUp");
@@ -105,14 +123,22 @@ public class SokobanLevelFenster extends JInternalFrame {
         getActionMap().put("undo", undoAction);
     }
 
+    /**
+     * Initialisiert das Panel, in welchem der Viewer angezeigt wird
+     */
     private void initp1() {
         p1 = new SokobanViewer(level);
         cp.add(p1);
     }
 
+    /**
+     * Initialisiert das Panel in welchem die Buttons zur Maussteuerung vorhanden sind.
+     * Auf der rechten Seite des Panels sind noch der Speichern- und Beenden-Button.
+     */
     private void initp2() {
         p2 = new JPanel();
         p2.setLayout(new GridLayout(1, 2));
+        //UpButton
         JButton up = new JButton("UP");
         up.addActionListener(new ActionListener() {
             @Override
@@ -122,6 +148,7 @@ public class SokobanLevelFenster extends JInternalFrame {
                 levelGelöst();
             }
         });
+        //DownButton
         JButton down = new JButton("DOWN");
         down.addActionListener(new ActionListener() {
             @Override
@@ -131,6 +158,7 @@ public class SokobanLevelFenster extends JInternalFrame {
                 levelGelöst();
             }
         });
+        //LeftButton
         JButton left = new JButton("LEFT");
         left.addActionListener(new ActionListener() {
             @Override
@@ -140,6 +168,7 @@ public class SokobanLevelFenster extends JInternalFrame {
                 levelGelöst();
             }
         });
+        //RightButton
         JButton right = new JButton("RIGHT");
         right.addActionListener(new ActionListener() {
             @Override
@@ -149,6 +178,7 @@ public class SokobanLevelFenster extends JInternalFrame {
                 levelGelöst();
             }
         });
+        //UndoButton
         JButton undo = new JButton("UNDO");
         undo.addActionListener(new ActionListener() {
             @Override
@@ -156,7 +186,8 @@ public class SokobanLevelFenster extends JInternalFrame {
                 level.undo();
             }
         });
-        //TODO speichern funktion
+
+        //SpeichernButton
         JButton speichern = new JButton("Save game");
         speichern.addActionListener(new ActionListener() {
             @Override
@@ -165,6 +196,8 @@ public class SokobanLevelFenster extends JInternalFrame {
             }
         });
         speichern.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        //BeendenButton
         JButton beenden = new JButton("End game");
         beenden.addActionListener(new ActionListener() {
             @Override
@@ -174,6 +207,7 @@ public class SokobanLevelFenster extends JInternalFrame {
         });
         beenden.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        //Hinzufügen der Steuerungsbuttons
         JPanel p20 = new JPanel(new GridLayout(3, 3));
         p20.add(new JLabel());
         p20.add(up);
@@ -185,6 +219,7 @@ public class SokobanLevelFenster extends JInternalFrame {
         p20.add(down);
         p20.add(new JLabel());
 
+        //Hinzufügen des Speichern- und Beenden-Buttons
         JPanel p21 = new JPanel();
         p21.setLayout(new BoxLayout(p21, BoxLayout.Y_AXIS));
         p21.add(Box.createVerticalGlue());
@@ -193,11 +228,15 @@ public class SokobanLevelFenster extends JInternalFrame {
         p21.add(beenden);
         p21.add(Box.createVerticalGlue());
 
+        //Hinzufügen der beiden Panels zu Panel 2 und Panel 2 zu cp
         p2.add(p20);
         p2.add(p21);
         cp.add(p2);
     }
 
+    /**
+     * Methode welche das Speichern eines Levels in Form einer ".ser" Datei ermöglicht.
+     */
     private void speichern() {
         int returnVal = fc.showSaveDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -214,6 +253,11 @@ public class SokobanLevelFenster extends JInternalFrame {
         }
     }
 
+    /**
+     * Methode welche eine Information Message erstellt, falls das Level gelöst wurde
+     * Danach wird das Nächste Level geladen, falls das letzte Level einer Welt gelöst wurde,
+     * wird stattdessen das Sokoban Startmenü geöffnet
+     */
     private void levelGelöst() {
         if (level.isSolved()) {
             JOptionPane.showInternalMessageDialog(this, "Level gelöst", level.toString(), JOptionPane.INFORMATION_MESSAGE);

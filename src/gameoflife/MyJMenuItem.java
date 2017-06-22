@@ -9,6 +9,11 @@ import java.awt.*;
 public class MyJMenuItem extends JMenuItem {
     private Color farbe;
 
+    /**
+     * JMenuItem um die Farbe der Zellen zu ändern.
+     *
+     * @param farbeS Text welcher in den JMenuItems steht.
+     */
     public MyJMenuItem(String farbeS) {
         setText(farbeS);
         switch (farbeS) {

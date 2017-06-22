@@ -19,6 +19,14 @@ public class Level extends Observable implements Serializable {
 
     private Level previous;
 
+    /**
+     * Konstruktor für ein Level
+     *
+     * @param worldName
+     * @param levelNr
+     * @param levelName
+     * @param levelString
+     */
     public Level(String worldName, int levelNr, String levelName, String levelString) {
         this.worldName = worldName;
         this.levelNr = levelNr;
@@ -29,6 +37,7 @@ public class Level extends Observable implements Serializable {
         ArrayList<Character> zeile = new ArrayList<>();
         for (int i = 0; i < levelString.length(); i++) {    //Level in einen String einlesen
             switch (levelString.charAt(i)) {
+                //Verschiedene Cases für Wand/Geldsack etc.
                 case ' ':
                     zeile.add(' ');
                     posS++;
@@ -80,6 +89,10 @@ public class Level extends Observable implements Serializable {
         }
     }
 
+    /**
+     * Konstruktor für ein Level, welches sein Vorgänger Level kennt
+     * @param previous
+     */
     public Level(Level previous) {
         worldName = previous.worldName;
         levelNr = previous.levelNr;
@@ -92,6 +105,10 @@ public class Level extends Observable implements Serializable {
         posSpalte = previous.posSpalte;
     }
 
+    /**
+     * Setter für ein Vorgänger Level
+     * @param previous
+     */
     public void setPrevious(Level previous) {
         if (this.previous == null) {
             this.previous = previous;
@@ -125,6 +142,10 @@ public class Level extends Observable implements Serializable {
         level.get(zeile).set(spalte, c);
     }
 
+    /**
+     * Methode, welche in verschiedenen Cases die moves durchführt
+     * @param move
+     */
     public void move(Character move) {
         switch (move) {
             case 'u':
@@ -146,8 +167,12 @@ public class Level extends Observable implements Serializable {
             default:
                 break;
         }
-    }   //Switch case für move
+    }
 
+
+    /**
+     * Methode für einen Zug nach oben
+     */
     private void moveUp() {
         if (getLevel(posZeile - 1, posSpalte).equals(' ')) {    //über uns ist frei
             if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
@@ -230,6 +255,9 @@ public class Level extends Observable implements Serializable {
         notifyObservers();
     }
 
+    /**
+     * Methode für einen Zug nach unten
+     */
     private void moveDown() {
         if (getLevel(posZeile + 1, posSpalte).equals(' ')) {    //unter uns ist frei
             if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
@@ -312,6 +340,9 @@ public class Level extends Observable implements Serializable {
         notifyObservers();
     }
 
+    /**
+     * Methode für einen Zug nach rechts
+     */
     private void moveRight() {
         if (getLevel(posZeile, posSpalte + 1).equals(' ')) {    //rechts neben uns ist frei
             if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
@@ -394,6 +425,9 @@ public class Level extends Observable implements Serializable {
         notifyObservers();
     }
 
+    /**
+     * Methode für einen Zug nach links
+     */
     private void moveLeft() {
         if (getLevel(posZeile, posSpalte - 1).equals(' ')) {    //links neben uns ist frei
             if (getLevel(posZeile, posSpalte).equals('@')) {    //wir befinden uns auf einem leeren Feld
@@ -476,6 +510,9 @@ public class Level extends Observable implements Serializable {
         notifyObservers();
     }
 
+    /**
+     * Methode um einen Zug rückgängig zu machen
+     */
     public void undo() {
         if (previous != null) {
             level = previous.level;
@@ -491,6 +528,10 @@ public class Level extends Observable implements Serializable {
         }
     }
 
+    /**
+     * Methode die das Feld nach noch nicht erfüllten Zielen durchsucht.
+     * Falls keine vorhanden -> solved = true.
+     */
     public void checkSolved() {
         int counter = 0;
         for (ArrayList<Character> ar : level) {
@@ -507,6 +548,10 @@ public class Level extends Observable implements Serializable {
         return solved;
     }
 
+    /**
+     * toString Methode
+     * @return Level + Nr. + levelName
+     */
     public String toString() {
         return "Level " + levelNr + ": " + levelName;
     }

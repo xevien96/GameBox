@@ -18,6 +18,11 @@ import java.awt.*;
 public class Hauptmenue extends JInternalFrame {
     DesktopFrame mydesk;
 
+    /**
+     * Konstruktor des Hauptmenüs, welches ein ChildFrame von DesktopFrame ist
+     *
+     * @param df DesktopFrame in welchem das Hauptmenü hinzugefügt wird
+     */
     public Hauptmenue(DesktopFrame df) {
         super("Hauptmenue", true, false, true, true);
         Dimension buttonSize = new Dimension(115, 50);

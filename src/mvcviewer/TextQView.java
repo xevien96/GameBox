@@ -40,10 +40,8 @@ class TextQView extends JPanel implements Observer {    // Beobachter
         d.setEditable(false);
     } // end Konstuktor
 
-    // ..
-    // ..
     public void update(Observable o, Object arg) {    // fuer Observer
-        if (o == myPolynom) repaint();            // neu darstellen
+        if (o == myPolynom) repaint();  // neu darstellen
     }
 
     public void paintComponent(Graphics g) {        // Component darstllen

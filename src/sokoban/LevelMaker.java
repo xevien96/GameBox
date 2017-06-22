@@ -9,6 +9,10 @@ import java.util.Vector;
 /**
  * @author Johann Helbig, Marc Brandt, Albert Renz
  */
+
+/**
+ * Klasse zum Auslesen der .txt Dateien in Level Strings
+ */
 public class LevelMaker {
     public static Vector<Level> makeLevelsFromFile(File levelFile) {
         Vector<Level> out = new Vector<>();

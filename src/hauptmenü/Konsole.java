@@ -2,6 +2,9 @@ package hauptmenü;
 
 import javax.swing.*;
 
+/**
+ * Klasse übernommen aus den Folien der Veranstaltung "Komplexe Programme"
+ */
 public class Konsole {
     public static String title(Object o) {
         String t = o.getClass().toString();

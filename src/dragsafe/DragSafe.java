@@ -13,18 +13,22 @@ import java.awt.event.MouseMotionListener;
  */
 
 public class DragSafe extends JInternalFrame implements MouseMotionListener, MouseListener {
+    static int numberOfWindows = 0; //Anzahl der offenen Fenster(Levelzähler)
     public DesktopFrame myDesk;
+    long sleeptime = 2000;
+    int drehzaehler;                //Anzahl der durchgeführten Drehungen
     private JButton[] buttons = new JButton[10];    //Array mit allen Buttons
     private Container cp;
     private boolean active = true;  //wenn false, werden Mousedraggedevents ignoriert
-
     private int[] code = new int[]{0, 7, 0, 4, 7, 1, 0, 2};     //Code zum öffnen des Safes
     private int zustand = 0;    //Anzahl richtig eingegebener Stellen
     private int dreh = -1;      //Drehrichtung (-1 ist im Uhrzeigersinn, +1 ...)
-    long sleeptime = 2000;
-    static int numberOfWindows = 0; //Anzahl der offenen Fenster(Levelzähler)
-    int drehzaehler;                //Anzahl der durchgeführten Drehungen
 
+    /**
+     * Konstruktor für DragSafe
+     *
+     * @param df DesktopFrame der Übergeben wird vom hauptmenü
+     */
     public DragSafe(DesktopFrame df) {
         myDesk = df;
         sleeptime = (long) (sleeptime / Math.pow(1.5, numberOfWindows)); //jedes Fenster ist 50% schneller als das vorherige Level

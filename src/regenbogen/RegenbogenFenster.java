@@ -2,8 +2,6 @@ package regenbogen;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.Random;
 
 /**
@@ -22,7 +20,7 @@ class RegenbogenFenster extends JInternalFrame {
     RegenbogenFenster() {
         super("Regenbogen!!!", true, true, true, true);
 
-        Random r = new Random();
+        Random r = new Random();    //wird verwendet um eine Zufallszahl auszuwählen
         int x = r.nextInt(500);
         int y = r.nextInt(500);
         setBounds(x + 100, y, 500, 500);

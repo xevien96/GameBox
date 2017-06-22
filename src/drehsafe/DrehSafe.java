@@ -16,6 +16,9 @@ public class DrehSafe extends JInternalFrame implements ActionListener {
     private int zustand = 0;    //Anzahl richtig eingegebener Stellen
     private int dreh = -1;      //Drehrichtung (-1 ist im Uhrzeigersinn, +1 ...)
 
+    /**
+     * Konstruktor für den Drehsafe
+     */
     public DrehSafe() {
         setSize(480, 500);
         setTitle("DrehSafe");

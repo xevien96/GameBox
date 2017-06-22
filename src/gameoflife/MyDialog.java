@@ -13,6 +13,11 @@ import java.awt.*;
 public class MyDialog extends JDialog {
     DesktopFrame mydesk;
 
+    /**
+     * Konstruktor für einen Dialog
+     *
+     * @param mydesk DesktopFrame in welchem der Dialog erscheinen soll
+     */
     public MyDialog(DesktopFrame mydesk) {
         super();
         this.mydesk = mydesk;

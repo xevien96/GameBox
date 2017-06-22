@@ -13,7 +13,12 @@ public class GameOfLifeModel extends Observable {
     private long sleeptime = 250;
     private boolean läuft = false;
 
-
+    /**
+     * Konstruktor für das GameOfLifeModel
+     *
+     * @param rows    Zeilen
+     * @param columns Spalten
+     */
     public GameOfLifeModel(int rows, int columns) {
         this.rows = rows;
         this.columns = columns;
@@ -60,11 +65,11 @@ public class GameOfLifeModel extends Observable {
 
     public boolean isLäuft() {
         return läuft;
-    }
+    }   //wird für den Modus "Laufen" verwendet
 
     public void setLäuft(boolean läuft) {
         this.läuft = läuft;
-    }
+    }   //Modus "Laufen"
 
     /**
      * Gibt das Model auf der Konsole aus

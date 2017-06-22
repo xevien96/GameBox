@@ -7,28 +7,32 @@ public class SiebenSpaltenPrim extends JInternalFrame {
     private JTextArea textArea;
     private JScrollPane scrollPane;
 
+    /**
+     * Konstruktor für SiebenSpaltenPrim Hauptfenster
+     */
     public SiebenSpaltenPrim() {
         super("SiebenSpaltenPrim", true, true, true, true);
-        setSize(590, 400);
+        setSize(590, 400);  //Größe des Fenster
         Container cp = getContentPane();
         cp.setLayout(new BorderLayout());
 
-        scrollPane = new JScrollPane();
-        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane = new JScrollPane(); //Scrollbar
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);    //Horizontale Scrollbar
 
-        textArea = new JTextArea();
+        textArea = new JTextArea(); //TextArea,wo die Primzahlen angezeigt werden
         textArea.setEditable(false);
         scrollPane.getViewport().add(textArea);
 
-        JPanel buttonPanel = new JPanel();
+        JPanel buttonPanel = new JPanel();  //Panel für Buttons
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 
-        JButton startButton = new JButton("Starten");
+        JButton startButton = new JButton("Starten");   //Start Button
         startButton.addActionListener(e -> starten());
 
-        JButton schliessenButton = new JButton("Schließen");
+        JButton schliessenButton = new JButton("Schließen");    //Schließen Button
         schliessenButton.addActionListener(e -> dispose());
 
+        //Adden der Buttons
         buttonPanel.add(Box.createHorizontalGlue());
         buttonPanel.add(startButton);
         buttonPanel.add(Box.createHorizontalGlue());
@@ -39,11 +43,19 @@ public class SiebenSpaltenPrim extends JInternalFrame {
         cp.add(buttonPanel, BorderLayout.SOUTH);
     }
 
+    /**
+     * Methode welche die Primzahlen in das textArea schreibt und die Scrollbar dabei mitzieht und vergrößert
+     *
+     * @param text
+     */
     public void write(String text) {
         textArea.append(text);
         scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
     }
 
+    /**
+     * Methode welche den Thread für die Primzahlen startet
+     */
     public void starten() {
         new Thread(() -> {
             Primer first = new Primer(2, "", this);
@@ -54,14 +66,15 @@ public class SiebenSpaltenPrim extends JInternalFrame {
             Primer sixth = new Primer(2, "\t\t\t\t\t", this);
             Primer seventh = new Primer(2, "\t\t\t\t\t\t", this);
             for (int i = 3; i <= 6000; ++i) {
-                first.send(i);
-                second.send(i);
-                third.send(i);
-                fourth.send(i);
-                fifth.send(i);
-                sixth.send(i);
-                seventh.send(i);
+                first.send(i);  //senden
+                second.send(i);     //der
+                third.send(i);          //einzelnen
+                fourth.send(i);             //insgesamt
+                fifth.send(i);                  //Sieben
+                sixth.send(i);                      //Spalten
+                seventh.send(i);                        //der Primzahlen
             }
+            //senden einer 0 in allen Spalten
             first.send(0);
             second.send(0);
             third.send(0);
@@ -79,7 +92,14 @@ class Primer extends Thread implements Runnable {
     private Primer next;
     private String prefix;
     private SiebenSpaltenPrim myFrame;
+    private int buffer = -1;
 
+    /**
+     * Konstruktor für eine Primzahl
+     * @param prime
+     * @param prefix
+     * @param inf
+     */
     Primer(int prime, String prefix, SiebenSpaltenPrim inf) {
         super("Primer-" + prime);
         myFrame = inf;
@@ -88,6 +108,9 @@ class Primer extends Thread implements Runnable {
         this.start();
     }
 
+    /**
+     * Method um eine Primzahl durchzuzählen
+     */
     public void run() {
         myFrame.write(prefix + p + "\n");
         while (true) {
@@ -106,8 +129,10 @@ class Primer extends Thread implements Runnable {
         }
     }
 
-    private int buffer = -1;
-
+    /**
+     * Methode zum Senden der Zahlen
+     * @param i integer
+     */
     synchronized void send(int i) {
         try {
             while (buffer >= 0)
@@ -118,6 +143,10 @@ class Primer extends Thread implements Runnable {
         }
     }
 
+    /**
+     * Methode zum Erhalten der Zahlen
+     * @return Zahlen vom Typ int
+     */
     synchronized int recieve() {
         int result = 0;
         try {

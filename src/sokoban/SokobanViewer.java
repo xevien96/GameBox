@@ -13,6 +13,11 @@ public class SokobanViewer extends JPanel implements Observer {
     private Level level;
     private Color freeColor = Color.WHITE, wallColor = Color.BLACK, playerColor = Color.BLUE, boxColor = Color.YELLOW, targetColor = Color.RED, boxOnTargetColor = Color.ORANGE, playerOnTargetColor = Color.MAGENTA;
 
+    /**
+     * Konstrukto für den SokobanViewer
+     *
+     * @param lvl Level welches erstellt werden soll
+     */
     public SokobanViewer(Level lvl) {
         level = lvl;
         level.addObserver(this);
@@ -27,6 +32,10 @@ public class SokobanViewer extends JPanel implements Observer {
         }
     }
 
+    /**
+     * Methode zum Zeichnen der einzelnen Buttons des Levels
+     * @param g
+     */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         for (int i = 0; i < level.getZeilenAnzahl(); i++) {
@@ -66,6 +75,11 @@ public class SokobanViewer extends JPanel implements Observer {
         }
     }
 
+    /**
+     * Update Methode zum Benachrichtigen des Observers
+     * @param o
+     * @param arg
+     */
     @Override
     public void update(Observable o, Object arg) {
         if (o == level) {

@@ -10,6 +10,12 @@ public class MyButton extends JButton {
     private int zeile;
     private int spalte;
 
+    /**
+     * Buttons für die Einzelnen Zellen des GameOfLife
+     *
+     * @param zeile  Zeilen des GameOfLife
+     * @param spalte Spalten des GameOfLife
+     */
     public MyButton(int zeile, int spalte) {
         super();
         this.zeile = zeile;

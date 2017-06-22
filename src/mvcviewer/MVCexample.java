@@ -121,6 +121,9 @@ public class MVCexample extends JInternalFrame {        // Das GUI-Programm
 
     } // end init
 
+    /**
+     * Initialisieren der einzelnen Variablen des Panels
+     */
     public void initpa() {
         pa = new JPanel();
         pa.setLayout(new GridLayout(1, 2));

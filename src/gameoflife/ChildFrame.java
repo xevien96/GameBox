@@ -18,6 +18,11 @@ public class ChildFrame extends JInternalFrame implements ActionListener {
     GameOfLifeModel model;
     GameOfLifeViewer view;
 
+    /**
+     * Konstruktor für das ChildFrame, was als Hauptmenü des Spiels verwendet wird
+     *
+     * @param df
+     */
     public ChildFrame(DesktopFrame df) {
         super("Game Of Life", true, false, true, true);
         setSize(300, 300);
@@ -51,6 +56,12 @@ public class ChildFrame extends JInternalFrame implements ActionListener {
         cp.add(Box.createVerticalGlue());
     }
 
+    /**
+     * Konstruktor für das "Spielfenster" in welchem das Spiel läuft
+     * @param df DesktopFrame des Spiels
+     * @param model Model auf welches sich das Spiel bezieht
+     * @param orientation Ausrichtung des Spiels
+     */
     public ChildFrame(DesktopFrame df, GameOfLifeModel model, GameOfLifeViewer.OrientationT orientation) {
         super("Game of Life", true, true, true, false);
         setSize(300, 300);

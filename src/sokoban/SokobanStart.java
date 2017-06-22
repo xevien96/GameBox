@@ -18,12 +18,14 @@ public class SokobanStart extends JInternalFrame {
     private static Vector<Level> nabokosmos;
     private static Vector<Level> yoshiomurase;
 
+    //Dateien für die 3 Welten
     static {
         minicosmos = LevelMaker.makeLevelsFromFile(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "src" + System.getProperty("file.separator") + "sokoban" + System.getProperty("file.separator") + "Levels" + System.getProperty("file.separator") + "Worlds" + System.getProperty("file.separator") + "minicosmos.txt"));
         nabokosmos = LevelMaker.makeLevelsFromFile(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "src" + System.getProperty("file.separator") + "sokoban" + System.getProperty("file.separator") + "Levels" + System.getProperty("file.separator") + "Worlds" + System.getProperty("file.separator") + "nabokosmos.txt"));
         yoshiomurase = LevelMaker.makeLevelsFromFile(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "src" + System.getProperty("file.separator") + "sokoban" + System.getProperty("file.separator") + "Levels" + System.getProperty("file.separator") + "Worlds" + System.getProperty("file.separator") + "yoshiomurase.txt"));
     }
 
+    //FileChooser für Saved Games
     private final JFileChooser fc = new JFileChooser(System.getProperty("user.dir") + System.getProperty("file.separator") + "src" + System.getProperty("file.separator") + "sokoban" + System.getProperty("file.separator") + "Levels" + System.getProperty("file.separator") + "Saved Games");
     private DesktopFrame myDesk;
 
@@ -42,6 +44,11 @@ public class SokobanStart extends JInternalFrame {
     private JComboBox level;
 
 
+    /**
+     * Konstruktor für ein Sokoban Hauptfenster
+     *
+     * @param df DesktopFrame in welchem das SokobanStart Fenster läuft
+     */
     public SokobanStart(DesktopFrame df) {
         super("Startmenü", false, true, false, true);
         myDesk = df;
@@ -52,6 +59,7 @@ public class SokobanStart extends JInternalFrame {
         initp3();
     }
 
+    //Auswahl der Welten
     public static Vector<Level> getWorldVector(String worldname) {
         switch (worldname) {
             case "minicosmos":
@@ -87,6 +95,9 @@ public class SokobanStart extends JInternalFrame {
         cp.add(p1, BorderLayout.NORTH);
     }
 
+    /**
+     * Mittleres Panel initialisiert RadioButtons und Checkbox
+     */
     private void initp2() {
         p2 = new JPanel();
         p2.setLayout(new BoxLayout(p2, BoxLayout.X_AXIS));
@@ -138,6 +149,7 @@ public class SokobanStart extends JInternalFrame {
         p21.add(levellabel);
         p21.add(level);
 
+        //Hinzufügen von dem Panel für RadioButtons und Panel mit Checkbox
         p2.add(Box.createHorizontalGlue());
         p2.add(p20);
         p2.add(Box.createHorizontalGlue());
@@ -171,6 +183,9 @@ public class SokobanStart extends JInternalFrame {
         cp.add(p3, BorderLayout.PAGE_END);
     }
 
+    /**
+     * Methode zum Laden eines Spiels
+     */
     private void spielLaden() {
         int returnVal = fc.showSaveDialog(this);
         if (returnVal == fc.APPROVE_OPTION) {
