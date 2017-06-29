@@ -187,7 +187,7 @@ public class SokobanStart extends JInternalFrame {
      * Methode zum Laden eines Spiels
      */
     private void spielLaden() {
-        int returnVal = fc.showSaveDialog(this);
+        int returnVal = fc.showOpenDialog(this);
         if (returnVal == fc.APPROVE_OPTION) {
             File gameFile = fc.getSelectedFile();
             try {
