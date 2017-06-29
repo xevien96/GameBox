@@ -216,12 +216,12 @@ public class Spielfenster extends JInternalFrame implements ActionListener {
         spielfeld[zeile][spalte].setBackground(spieler[aktiverSpieler].getFarbe()); //Farbe des ausgewählten Felds wird auf die Spielerfarbe gefärbt
         verbleibendeSteine--;
         undoButton.setEnabled(true);
+        testeGewinner(zeile, spalte);
         if (verbleibendeSteine <= 0) { //Spielerwechsel wenn anderer Spieler dran ist
             spielerWechseln();
             verbleibendeSteine = 2;
         }
         anzeige.setText(spieler[aktiverSpieler].getName() + " ist am Zug. Noch " + verbleibendeSteine + " Stein(e) verbleibend.");
-        testeGewinner(zeile, spalte);
         if (spielzüge.size() >= maximaleZüge) { // es wird getestet ob das Spielfeld voll ist
             JOptionPane.showInternalMessageDialog(this, "Das Spielfeld ist voll", "Spiel beendet", JOptionPane.INFORMATION_MESSAGE);
             undoButton.setEnabled(false);

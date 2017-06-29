@@ -14,7 +14,7 @@ public class SokobanViewer extends JPanel implements Observer {
     private Color freeColor = Color.WHITE, wallColor = Color.BLACK, playerColor = new Color(0,126,255), boxColor = Color.YELLOW, targetColor = Color.RED, boxOnTargetColor = Color.ORANGE, playerOnTargetColor = Color.MAGENTA;
 
     /**
-     * Konstrukto für den SokobanViewer
+     * Konstruktor für den SokobanViewer
      *
      * @param lvl Level welches erstellt werden soll
      */
