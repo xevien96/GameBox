@@ -11,7 +11,7 @@ import java.util.Observer;
 public class SokobanViewer extends JPanel implements Observer {
     private JButton[][] spielfeld;
     private Level level;
-    private Color freeColor = Color.WHITE, wallColor = Color.BLACK, playerColor = Color.BLUE, boxColor = Color.YELLOW, targetColor = Color.RED, boxOnTargetColor = Color.ORANGE, playerOnTargetColor = Color.MAGENTA;
+    private Color freeColor = Color.WHITE, wallColor = Color.BLACK, playerColor = new Color(0,126,255), boxColor = Color.YELLOW, targetColor = Color.RED, boxOnTargetColor = Color.ORANGE, playerOnTargetColor = Color.MAGENTA;
 
     /**
      * Konstrukto für den SokobanViewer
